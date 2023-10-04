@@ -46,13 +46,13 @@ public class ProductController {
 
     //-----------Detail----------------------------
 
-    @GetMapping("/prodotto/{id}")
+    @GetMapping("/products/{id}")
     public String detail(@PathVariable Integer id, Model model) {
         model.addAttribute("products", productService.getById(id));
         return "products/detail";
     }
 
-    @GetMapping("admin/prodotto/{id}")
+    @GetMapping("admin/products/{id}")
     public String detailAdmin(@PathVariable Integer id, Model model) {
         model.addAttribute("products", productService.getById(id));
         return "admin/detail";
@@ -101,7 +101,7 @@ public class ProductController {
         return "redirect:/admin";
     }
 
-    @PostMapping("/admin/prodotto/delete/{id}")
+    @PostMapping("/admin/products/delete/{id}")
     public String delete(@PathVariable Integer id) {
         productRepository.deleteById(id);
         return "redirect:/admin";

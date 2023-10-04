@@ -12,22 +12,22 @@
     <hr>
 
     <div class="row justify-content-center">
-        <div th:each="prodotto : ${prodotti}" class="col-3">
+        <div th:each="product : ${products}" class="col-3">
 
             <div class="card mt-4" style="width: 18rem;">
-                <img th:src="${prodotto.url}" class="card-img-top" alt="Foto Ricetta">
+                <img th:src="${product.url}" class="card-img-top" alt="Foto Ricetta">
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${prodotto.name}"></h5>
-                    <p class="card-text" th:text="${prodotto.description}"></p>
-                    <p class="card-text" th:text="${prodotto.price}">€</p>
+                    <h5 class="card-title" th:text="${product.name}"></h5>
+                    <p class="card-text" th:text="${product.description}"></p>
+                    <p class="card-text" th:text="${product.price}">€</p>
                     <div class="row text-center">
-                        <a class="btn btn-primary col-4" th:href="@{/admin/prodotto/{id}(id=${prodotto.id})}">Detail</a>
-                        <!--<form class="col-4" th:action="@{/delete/{id}(id=${ricetta.id})}" method="POST">
+                        <a class="btn btn-primary col-4" th:href="@{/admin/products/{id}(id=${product.id})}">Detail</a>
+                        <a class="btn btn-primary col-4" th:href="@{/admin/edit/{id}(id=${product.id})}">Edit</a>
+                        <form class="col-4" th:action="@{/admin/products/delete/{id}(id=${product.id})}" method="POST">
                             <button type="submit" class="btn btn-primary">
                                 Delete
                             </button>
-                        </form> -->
-                        <a class="btn btn-primary col-4" th:href="@{/admin/edit/{id}(id=${prodotto.id})}">Edit</a>
+                        </form>
                     </div>
 
                 </div>
