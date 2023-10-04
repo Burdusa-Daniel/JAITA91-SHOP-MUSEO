@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>admin detail</title>
+</head>
+<body>
+<div class="container text-center">
+    <h1>dettagli prodotti per admin</h1>
+    <hr>
+
+    <h2 th:text="${prodotti.name}"></h2>
+    <h5 th:text="${prodotti.description}"></h5>
+    <p th:text="${prodotti.price}"></p>
+
+</div>
+
+</body>
+</html>
