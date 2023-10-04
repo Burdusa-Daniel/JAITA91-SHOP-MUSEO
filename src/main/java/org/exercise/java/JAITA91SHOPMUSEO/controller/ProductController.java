@@ -1,6 +1,7 @@
 package org.exercise.java.JAITA91SHOPMUSEO.controller;
 
 
+import jakarta.validation.Valid;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Product;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.CategoryRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.ProductRepository;
@@ -76,10 +77,12 @@ public class ProductController {
 
     @PostMapping("/admin/create")
     public String doCreate(
-            @ModelAttribute("product") Product productForm,
+            Model model,
+            @Valid @ModelAttribute("product") Product productForm,
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("categories", categoryRepository.findAll());
             return "admin/create";
         }
         productRepository.save(productForm);
@@ -97,11 +100,13 @@ public class ProductController {
 
     @PostMapping("admin/edit/{id}")
     public String doEdit(
+            Model model,
             @PathVariable Integer id,
-            @ModelAttribute("product") Product productForm,
+            @Valid @ModelAttribute("product") Product productForm,
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("categories", categoryRepository.findAll());
             return "admin/edit";
         }
         productRepository.save(productForm);

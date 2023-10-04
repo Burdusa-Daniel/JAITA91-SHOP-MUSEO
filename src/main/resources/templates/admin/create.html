@@ -13,7 +13,7 @@
     <div class="container text-center">
         <h1>MODIFICA IL PRODOTTO</h1>
         <form
-                th:action="@{admin/create}"
+                th:action="@{/admin/create}"
                 id="prodotto-edit"
                 method="POST"
                 th:object="${product}"
@@ -39,6 +39,16 @@
             <div class="mb-3 text-center">
                 <label for="imageUrl" class="form-label text-primary">Url Immagine</label>
                 <input class="form-control text-center" id="imageUrl" type="url" th:field="*{url}">
+            </div>
+
+            <div class="mb-3 text-center"> <h4>Categorie</h4>
+                <div class="form-check" th:each="cat : ${categories}">
+                    <label>
+                        <span th:text="${cat.name}"></span>
+                        <input class="form-check-input" type="checkbox" th:value="${cat.id}"
+                               th:id="|category_${cat.id}|" th:field="*{categories}">
+                    </label>
+                </div>
             </div>
 
             <button type="submit" class="btn btn-primary">Crea</button>
