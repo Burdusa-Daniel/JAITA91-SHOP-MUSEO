@@ -9,31 +9,45 @@
 <body>
 <div class="container text-center">
     <h1>MODIFICA IL PRODOTTO</h1>
-  <form
-          th:action="@{admin/edit/{id}(id=${prodotti.id})}"
-          id="prodotto-edit"
-          method="POST"
-          th:object="${prodotti}"
-  >
-    <div class="mb-3 text-center">
-      <label for="name" class="form-label text-primary">Nome</label>
-      <input class="form-control text-center" id="name" type="text" th:field="*{name}">
+    <form
+            th:action="@{/admin/edit/{id}(id=${product.id})}"
+            id="prodotto-edit"
+            method="POST"
+            th:object="${product}"
+    >
+        <div class="mb-3 text-center">
+            <label for="name" class="form-label text-primary">Nome</label>
+            <input class="form-control text-center" id="name" type="text" th:field="*{name}">
+        </div>
 
-    </div>
+        <div class="mb-3 text-center">
+            <label for="description" class="form-label text-primary">Descrizione</label>
+            <input class="form-control text-center" id="description" type="text" th:field="*{description}">
+        </div>
 
-    <div class="mb-3 text-center">
-      <label for="description" class="form-label text-primary">Descrizione</label>
-      <input class="form-control text-center" id="description" type="text" th:field="*{description}">
+        <div class="mb-3 text-center">
+            <label for="price" class="form-label text-primary">Prezzo</label>
+            <input class="form-control text-center" id="price" type="text" th:field="*{price}">
+        </div>
 
-    </div>
+        <div class="mb-3 text-center">
+            <label for="imageUrl" class="form-label text-primary">Url Immagine</label>
+            <input class="form-control text-center" id="imageUrl" type="url" th:field="*{url}">
+        </div>
 
-    <div class="mb-3 text-center">
-      <label for="price" class="form-label text-primary">prezzo</label>
-      <input class="form-control text-center" id="price" type="text" th:field="*{price}">
+        <div class="mb-3 text-center"> <h4>Categorie</h4>
+            <div class="form-check" th:each="cat : ${categories}">
+                <label>
+                    <span th:text="${cat.name}"></span>
+                    <input class="form-check-input" type="checkbox" th:value="${cat.id}"
+                           th:id="|category_${cat.id}|" th:field="*{categories}">
+                </label>
+            </div>
+        </div>
 
-    </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a class="btn btn-primary" th:href="@{/admin}">Cancel</a>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-primary" th:href="@{/admin}">Cancel</a>
+    </form>
 
 </div>
 

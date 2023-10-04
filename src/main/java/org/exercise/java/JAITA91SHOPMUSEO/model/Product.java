@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -12,8 +13,6 @@ public class Product {
 
     //ATTRIBUTI
 
-    @ManyToOne
-    Category category;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -25,16 +24,18 @@ public class Product {
     private String description;
     @NotNull
     private BigDecimal price;
+    @ManyToMany
+    List<Category> categories;
 
     //GETTER E SETTER
 
-    public Category getCategory() {
-        return category;
+
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public Integer getId() {

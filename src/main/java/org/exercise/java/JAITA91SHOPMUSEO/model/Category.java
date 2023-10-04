@@ -8,13 +8,14 @@ import java.util.List;
 @Table(name = "categories")
 public class Category {
 
-    @OneToMany
-    List<Product> products;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String description;
+
+    @ManyToMany
+    List<Product> products;
 
     public Integer getId() {
         return id;

@@ -2,6 +2,7 @@ package org.exercise.java.JAITA91SHOPMUSEO.controller;
 
 
 import org.exercise.java.JAITA91SHOPMUSEO.model.Product;
+import org.exercise.java.JAITA91SHOPMUSEO.repository.CategoryRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.ProductRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,16 @@ public class ProductController {
 
     private final ProductRepository productRepository;
 
+    private final CategoryRepository categoryRepository;
+
     @Autowired
     public ProductController(
-            ProductService productService, ProductRepository productRepository
+            ProductService productService, ProductRepository productRepository,
+            CategoryRepository categoryRepository
     ) {
         this.productService = productService;
         this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
     }
 
 
@@ -64,7 +69,8 @@ public class ProductController {
 
     @GetMapping("/admin/create")
     public String create(Model model) {
-        model.addAttribute("products", new Product());
+        model.addAttribute("product", new Product());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "admin/create";
     }
 
@@ -84,7 +90,8 @@ public class ProductController {
 
     @GetMapping("/admin/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
-        model.addAttribute("prodotti", productService.getById(id));
+        model.addAttribute("product", productService.getById(id));
+        model.addAttribute("categories", categoryRepository.findAll());
         return "admin/edit";
     }
 
