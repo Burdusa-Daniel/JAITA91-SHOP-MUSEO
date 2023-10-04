@@ -8,11 +8,13 @@ import java.math.BigDecimal;
 
 
 @Entity
-@Table(name = "prodotti")
-public class Prodotto {
+@Table(name = "products")
+public class Product {
 
     //ATTRIBUTI
 
+    @ManyToOne
+    Category category;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -25,8 +27,16 @@ public class Prodotto {
     @NotNull
     private BigDecimal price;
 
-
     //GETTER E SETTER
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+
+    }
 
     public Integer getId() {
         return id;
@@ -67,4 +77,5 @@ public class Prodotto {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
 }

@@ -1,1 +1,1 @@
-INSERT INTO prodotti (description, name, price, url) VALUES('dfdfddf', 'louvre', 10.89, 'guardaqua');
+INSERT INTO products (description, name, price, url) VALUES('dfdfddf', 'louvre', 10.89, 'guardaqua');
