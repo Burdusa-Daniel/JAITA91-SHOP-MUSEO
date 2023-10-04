@@ -38,9 +38,9 @@ public class ProdottoController {
 
     @GetMapping("/admin/create")
     public String create(Model model){
-        model.addAttribute("prodotti", new Prodotto()){
-            return "admin/create";
-        }
+        model.addAttribute("prodotti", new Prodotto());
+        return "admin/create";
+
     }
 
     @PostMapping("/admin/create")
