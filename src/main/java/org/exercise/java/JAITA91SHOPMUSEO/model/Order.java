@@ -6,14 +6,14 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "acquisti")
-public class Acquisto{
+public class Order {
 
     //attributi
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private LocalDate data;
-    private int quantita;
+    private LocalDate date;
+    private int quantity;
 
     //getter e setter
     public int getId() {
@@ -24,19 +24,19 @@ public class Acquisto{
         this.id = id;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDate(LocalDate data) {
+        this.date = data;
     }
 
-    public int getQuantita() {
-        return quantita;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuantita(int quantita) {
-        this.quantita = quantita;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
