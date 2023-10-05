@@ -28,10 +28,10 @@ public class Product {
     @ManyToMany
     List<Category> categories;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<Order> orders;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<Assortment> assortments;
 
     public Integer getAvailable() {
