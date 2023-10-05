@@ -2,7 +2,6 @@ package org.exercise.java.JAITA91SHOPMUSEO.controller;
 
 
 import jakarta.validation.Valid;
-import org.exercise.java.JAITA91SHOPMUSEO.model.Category;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Order;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Product;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.CategoryRepository;
@@ -10,17 +9,12 @@ import org.exercise.java.JAITA91SHOPMUSEO.repository.OrderRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.ProductRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/")
@@ -35,7 +29,8 @@ public class ProductController {
 
     @Autowired
     public ProductController(
-            ProductService productService, ProductRepository productRepository,
+            ProductService productService,
+            ProductRepository productRepository,
             CategoryRepository categoryRepository,
             OrderRepository orderRepository
     ) {
@@ -55,7 +50,7 @@ public class ProductController {
     @GetMapping("/admin")
     public String homepage(Model model) {
         model.addAttribute("products", productRepository.findAll());
-        return "admin/index";
+        return "admin/products/index";
     }
 
     //-----------Detail----------------------------
@@ -70,7 +65,7 @@ public class ProductController {
     @GetMapping("admin/products/{id}")
     public String detailAdmin(@PathVariable Integer id, Model model) {
         model.addAttribute("product", productService.getById(id));
-        return "admin/detail";
+        return "admin/products/detail";
     }
 
 
@@ -81,7 +76,7 @@ public class ProductController {
     public String create(Model model) {
         model.addAttribute("product", new Product());
         model.addAttribute("categories", categoryRepository.findAll());
-        return "admin/create";
+        return "admin/products/create";
     }
 
     @PostMapping("/admin/create")
@@ -100,9 +95,8 @@ public class ProductController {
 
     @PostMapping("/products/buy/{id}")
     public String buy(
-            @PathVariable Integer id,
-            @ModelAttribute Order order
-            ) {
+            @PathVariable Integer id, @ModelAttribute Order order
+    ) {
         order.setProduct(productService.getById(id));
         order.setDate(LocalDate.now());
         orderRepository.save(order);
@@ -115,7 +109,7 @@ public class ProductController {
     public String edit(@PathVariable Integer id, Model model) {
         model.addAttribute("product", productService.getById(id));
         model.addAttribute("categories", categoryRepository.findAll());
-        return "admin/edit";
+        return "admin/products/edit";
     }
 
     @PostMapping("admin/edit/{id}")
@@ -135,7 +129,9 @@ public class ProductController {
 
     @PostMapping("/admin/products/delete/{id}")
     public String delete(@PathVariable Integer id) {
-        productService.getById(id).getCategories().clear();
+        Product product = productService.getById(id);
+        product.getCategories().clear();
+        productRepository.save(product);
         productRepository.deleteById(id);
 
         return "redirect:/admin";
