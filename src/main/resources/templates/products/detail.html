@@ -35,11 +35,11 @@
         th:action="@{/products/buy/{id}(id=${product.id})}"
         th:object="${order}"
 >
-    <label>
-        <input type="number" min="1" th:field="${order.quantity}">
+    <label class="form-label"> Quantità
+        <input class="form-control" type="number" min="1" th:field="${order.quantity}">
     </label>
 
-    <input type="submit" th:value="Compra">
+    <button type="submit" class="btn btn-primary">compra</button>
 </form>
 
 </body>
