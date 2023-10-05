@@ -24,8 +24,10 @@ public class Product {
     private String description;
     @NotNull
     private BigDecimal price;
+
     @ManyToMany(cascade = {CascadeType.REMOVE})
     List<Category> categories;
+
 
     //GETTER E SETTER
 
