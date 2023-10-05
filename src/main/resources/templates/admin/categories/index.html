@@ -13,6 +13,9 @@
     <span th:text="${category.name}">
     </span>
         <a th:href="@{/admin/categories/edit/{id}(id=${category.id})}">Modifica</a>
+        <form method="POST" th:action="@{/admin/categories/delete/{id}(id=${category.id})}">
+            <button type="submit">Elimina</button>
+        </form>
     </li>
 </ul>
 <a th:href="@{/admin/categories/create}">Aggiungi Categoria</a>

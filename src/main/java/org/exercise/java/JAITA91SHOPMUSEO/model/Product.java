@@ -25,7 +25,7 @@ public class Product {
     @NotNull
     private BigDecimal price;
 
-    @ManyToMany(cascade = {CascadeType.REMOVE})
+    @ManyToMany
     List<Category> categories;
 
 
