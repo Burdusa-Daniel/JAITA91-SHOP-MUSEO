@@ -2,6 +2,7 @@ package org.exercise.java.JAITA91SHOPMUSEO.controller;
 
 import jakarta.validation.Valid;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Category;
+import org.exercise.java.JAITA91SHOPMUSEO.model.Product;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.CategoryRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.service.CategoryService;
 import org.springframework.stereotype.Controller;
@@ -59,6 +60,20 @@ public class CategoryController {
         }
 
         categoryRepository.save(category);
+        return "redirect:/admin/categories";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteCategory(@PathVariable Integer id) {
+
+        Category category = categoryService.getById(id);
+        for (Product product : category.getProducts()) {
+            product.getCategories().remove(category);
+        }
+        categoryRepository.save(category);
+
+        categoryRepository.deleteById(id);
+
         return "redirect:/admin/categories";
     }
 

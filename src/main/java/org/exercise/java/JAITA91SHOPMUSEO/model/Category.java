@@ -14,6 +14,16 @@ public class Category {
     private String name;
     private String description;
 
+    @ManyToMany(mappedBy = "categories")
+    private List<Product> products;
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 
     public Integer getId() {
         return id;
