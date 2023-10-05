@@ -56,7 +56,7 @@ public class ProductController {
 
     @GetMapping("/products/{id}")
     public String detail(@PathVariable Integer id, Model model) {
-        model.addAttribute("products", productService.getById(id));
+        model.addAttribute("product", productService.getById(id));
         return "products/detail";
     }
 

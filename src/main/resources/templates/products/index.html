@@ -23,7 +23,7 @@
                 <p class="card-text" th:text="${product.description}"></p>
                 <p class="card-text" th:text="${product.price}">€</p>
                 <div class="row text-center">
-                    <a class="btn btn-primary col-4" th:href="@{/admin/products/{id}(id=${product.id})}">Detail</a>
+                    <a class="btn btn-primary col-4" th:href="@{/products/{id}(id=${product.id})}">Detail</a>
                 </div>
 
             </div>
