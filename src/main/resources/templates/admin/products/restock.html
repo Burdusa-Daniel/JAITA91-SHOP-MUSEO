@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <form
+          method="POST"
+          th:object="${assortment}"
+          th:action="@{/admin/products/restock/{id}(id=${assortment.product.id})}"
+  >
+
+      <input type="hidden" th:field="*{product}">
+
+      <label> Quantità
+          <input type="number" min="1" th:field="*{quantity}">
+      </label>
+
+      <label> Nome del fornitore
+          <input type="text" th:field="*{supplierName}">
+      </label>
+
+      <label> Prezzo
+          <input type="number" min="0" step="0.01" th:field="*{price}">
+      </label>
+
+
+      <button type="submit">Rifornisci</button>
+      <a href="/admin/products">Indietro</a>
+  </form>
+</body>
+</html>

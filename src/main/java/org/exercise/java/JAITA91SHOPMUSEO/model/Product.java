@@ -28,14 +28,23 @@ public class Product {
     @ManyToMany
     List<Category> categories;
 
-    @OneToMany
+    @OneToMany(mappedBy = "product")
     private List<Order> orders;
 
-    @OneToMany
-    private  List<Assortment> assortments;
+    @OneToMany(mappedBy = "product")
+    private List<Assortment> assortments;
 
     public Integer getAvailable() {
-        int available = assortments.size() - orders.size();
+        int fromOrders = 0;
+        for (Order order : orders) {
+            fromOrders += order.getQuantity();
+        }
+
+        int storageAvailable = 0;
+        for (Assortment assortment : assortments) {
+            storageAvailable += assortment.getQuantity();
+        }
+        int available = storageAvailable - fromOrders;
         if (available < 0) available = 0;
         return available;
     }

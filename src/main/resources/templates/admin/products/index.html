@@ -43,6 +43,12 @@
         .btn-custom:hover {
             background-color: #654321;
         }
+
+        .warning {
+            background-color: red;
+            border-radius: 100px;
+            font-size: 30px;
+        }
     </style>
 </head>
 <body style="background-color: #dcdcdc;">
@@ -59,20 +65,27 @@
                     <h5 class="card-title" th:text="${product.name}"></h5>
                     <p class="card-text" th:text="${product.description}"></p>
                     <p class="card-text" th:text="${product.price}">€</p>
+                    <p class="card-text" th:text="|${product.available} in magazzino|"></p>
+                    <div class="warning" th:if="${product.available <= 5}">Esaurimento scorte!</div>
+
                     <div class="row text-center">
-                        <div class="col-4">
+                        <div class="col-3">
                             <a class="btn btn-custom btn-block" th:href="@{/admin/products/{id}(id=${product.id})}">Dettagli</a>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <a class="btn btn-warning btn-block" th:href="@{/admin/edit/{id}(id=${product.id})}">Modifica</a>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
+                            <a class="btn btn-warning btn-block" th:href="@{/admin/products/restock/{id}(id=${product.id})}">Rifornisci</a>
+                        </div>
+                        <div class="col-3">
                             <form th:action="@{/admin/products/delete/{id}(id=${product.id})}" method="POST">
                                 <button type="submit" class="btn btn-danger btn-block">
                                     Elimina
                                 </button>
                             </form>
                         </div>
+
                     </div>
                 </div>
             </div>
