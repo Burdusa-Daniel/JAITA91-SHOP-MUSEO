@@ -27,20 +27,20 @@
         </div>
     </div>
 
+    <form
+            method="POST"
+            th:action="@{/products/buy/{id}(id=${product.id})}"
+            th:object="${order}"
+    >
+        <label class="form-label"> Quantità
+            <input class="form-control" type="number" min="1" th:field="${order.quantity}">
+        </label>
+
+        <button type="submit" class="btn btn-primary">compra</button>
+    </form>
+
 </div>
 
-
-<form
-        method="POST"
-        th:action="@{/products/buy/{id}(id=${product.id})}"
-        th:object="${order}"
->
-    <label class="form-label"> Quantità
-        <input class="form-control" type="number" min="1" th:field="${order.quantity}">
-    </label>
-
-    <button type="submit" class="btn btn-primary">compra</button>
-</form>
 
 </body>
 </html>
