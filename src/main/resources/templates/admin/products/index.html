@@ -66,7 +66,9 @@
                     <p class="card-text" th:text="${product.description}"></p>
                     <p class="card-text" th:text="${product.price}">€</p>
                     <p class="card-text" th:text="|${product.available} in magazzino|"></p>
-                    <div class="warning" th:if="${product.available <= 5}">Esaurimento scorte!</div>
+                    <div class="warning mb-2" th:if="${product.available <= 5}">
+                        <span class="badge badge-danger mb-2">Esaurimento scorte!</span>
+                    </div>
 
                     <div class="row text-center">
                         <div class="col-3">
