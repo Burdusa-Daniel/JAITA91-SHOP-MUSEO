@@ -20,13 +20,11 @@
     <div class="row col-10 bg-success-subtle">
         <div th:each="product : ${products}" class="col-3">
 
-            <div class="card mt-4" style="width: 18rem; height: 18rem;">
-                <img th:src="${product.url}" class="img-fluid" alt="Foto Ricetta">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${product.name}"></h5>
-                    <p class="card-text" th:text="${product.description}"></p>
-                    <p class="card-text" th:text="${product.price}">€</p>
-                    <div class="row">
+            <div class="card mt-4 align-middle shadow-sm rounded border border-success p-2 border-opacity-10" style="width: 18rem;">
+                <div>
+                <img th:src="${product.url}" class="img-fluid" style="max-height: 14em;" alt="Foto Ricetta">
+                    <div class="card-img-overlay d-flex">
+                        <div class="row">
 
                             <a class="col-4 mb-3"  th:href="@{/admin/products/{id}(id=${product.id})}">
                                 <i class="fa-solid fa-book-open"></i>
@@ -36,13 +34,19 @@
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
 
-                        <form class="col-4 mb-3" th:action="@{/admin/products/delete/{id}(id=${product.id})}" method="POST">
-                            <button type="submit" class="btn" data-bs-toggle="button">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </form>
-                    </div>
+                            <form class="col-4 mb-3" th:action="@{/admin/products/delete/{id}(id=${product.id})}" method="POST">
+                                <button type="submit" class="btn" data-bs-toggle="button">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="d-flex ">
+                        <h5 class="card-title" th:text="${product.name}"></h5>
+                        <p class="card-text" th:text="${product.description}"></p>
+                        <p class="card-text" th:text="${product.price}">€</p>
+                        </div>
 
+                    </div>
                 </div>
             </div>
         </div>
