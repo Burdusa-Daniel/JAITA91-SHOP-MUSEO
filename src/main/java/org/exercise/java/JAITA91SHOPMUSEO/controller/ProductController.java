@@ -3,8 +3,10 @@ package org.exercise.java.JAITA91SHOPMUSEO.controller;
 
 import jakarta.validation.Valid;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Category;
+import org.exercise.java.JAITA91SHOPMUSEO.model.Order;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Product;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.CategoryRepository;
+import org.exercise.java.JAITA91SHOPMUSEO.repository.OrderRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.ProductRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,15 +31,18 @@ public class ProductController {
     private final ProductRepository productRepository;
 
     private final CategoryRepository categoryRepository;
+    private final OrderRepository orderRepository;
 
     @Autowired
     public ProductController(
             ProductService productService, ProductRepository productRepository,
-            CategoryRepository categoryRepository
+            CategoryRepository categoryRepository,
+            OrderRepository orderRepository
     ) {
         this.productService = productService;
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
+        this.orderRepository = orderRepository;
     }
 
 
@@ -57,6 +63,7 @@ public class ProductController {
     @GetMapping("/products/{id}")
     public String detail(@PathVariable Integer id, Model model) {
         model.addAttribute("product", productService.getById(id));
+        model.addAttribute("order", new Order());
         return "products/detail";
     }
 
@@ -89,6 +96,17 @@ public class ProductController {
         }
         productRepository.save(productForm);
         return "redirect:/admin/";
+    }
+
+    @PostMapping("/products/buy/{id}")
+    public String buy(
+            @PathVariable Integer id,
+            @ModelAttribute Order order
+            ) {
+        order.setProduct(productService.getById(id));
+        order.setDate(LocalDate.now());
+        orderRepository.save(order);
+        return "redirect:/products/" + id;
     }
 
     //---------Edit------------------
