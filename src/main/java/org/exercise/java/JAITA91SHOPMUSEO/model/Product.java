@@ -28,8 +28,34 @@ public class Product {
     @ManyToMany
     List<Category> categories;
 
+    @OneToMany
+    private List<Order> orders;
 
-    //GETTER E SETTER
+    @OneToMany
+    private  List<Assortment> assortments;
+
+    public Integer getAvailable() {
+        int available = assortments.size() - orders.size();
+        if (available < 0) available = 0;
+        return available;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public List<Assortment> getAssortments() {
+        return assortments;
+    }
+
+    public void setAssortments(List<Assortment> assortments) {
+        this.assortments = assortments;
+    }
+//GETTER E SETTER
 
 
     public List<Category> getCategories() {
