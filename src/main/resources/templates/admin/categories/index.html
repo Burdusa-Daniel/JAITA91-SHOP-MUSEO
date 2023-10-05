@@ -7,31 +7,18 @@
     <title>Categorie</title>
 </head>
 <body>
-<div class="container text-center">
-    <h1> lista Categorie</h1>
-
-    <div class="card" style="width: 18rem;">
-        <ul class="list-group list-group-flush">
-            <li th:each="category : ${categories}" class="list-group-item">
-                <span th:text="${category.name}">
-    </span>
-                <a th:href="@{/admin/categories/edit/{id}(id=${category.id})}">Modifica</a>
-            </li>
-        </ul>
-        <div class="card-footer">
-            <a th:href="@{/admin/categories/create}">Aggiungi Categoria</a>
-            <a th:href="@{/admin/categories}">Indietro</a>
-        </div>
-    </div>
-    <!--<ul>
-        <li th:each="category : ${categories}">
+<h1>Categorie</h1>
+<ul>
+    <li th:each="category : ${categories}">
     <span th:text="${category.name}">
     </span>
-            <a th:href="@{/admin/categories/edit/{id}(id=${category.id})}">Modifica</a>
-        </li>
-    </ul>
-    <a th:href="@{/admin/categories/create}">Aggiungi Categoria</a>
-    <a th:href="@{/admin/categories}">Indietro</a> -->
-</div>
+        <a th:href="@{/admin/categories/edit/{id}(id=${category.id})}">Modifica</a>
+        <form method="POST" th:action="@{/admin/categories/delete/{id}(id=${category.id})}">
+            <button type="submit">Elimina</button>
+        </form>
+    </li>
+</ul>
+<a th:href="@{/admin/categories/create}">Aggiungi Categoria</a>
+<a th:href="@{/admin/categories}">Indietro</a>
 </body>
 </html>
