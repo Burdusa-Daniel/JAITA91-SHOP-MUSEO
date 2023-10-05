@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>detail for user</title>
@@ -8,12 +8,23 @@
 <div class="container text-center">
     <h1>DETTAGLI PRODOTTO</h1>
 </div>
-<h1>dettagli prodotti per admin</h1>
-<hr>
 
 <h2 th:text="${product.name}"></h2>
 <h5 th:text="${product.description}"></h5>
 <p th:text="${product.price}"></p>
 <img th:src="${product.url}"></img>
+
+<form
+        method="POST"
+        th:action="@{/products/buy/{id}(id=${product.id})}"
+        th:object="${order}"
+>
+    <label>
+        <input type="number" min="1" th:field="${order.quantity}">
+    </label>
+
+    <input type="submit" th:value="Compra">
+</form>
+
 </body>
 </html>

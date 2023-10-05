@@ -17,3 +17,5 @@ INSERT INTO products_categories (categories_id, product_id) VALUES (1,4);
 INSERT INTO products_categories (categories_id, product_id) VALUES (1,5);
 INSERT INTO products_categories (categories_id, product_id) VALUES (1,6);
 INSERT INTO products_categories (categories_id, product_id) VALUES (1,7);
+
+INSERT INTO users (id, name) VALUES (1, 'Jaita91')
