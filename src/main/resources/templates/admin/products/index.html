@@ -6,7 +6,7 @@
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>admin gestione prodotto</title>
 </head>
-<body>
+<body class="p-3 mb-2 bg-danger-subtle text-emphasis-danger">
 <div class="container text-center">
     <h1>admin pagina gestore</h1>
     <hr>
@@ -14,20 +14,23 @@
     <div class="row justify-content-center">
         <div th:each="product : ${products}" class="col-3">
 
-            <div class="card mt-4" style="width: 18rem;">
+            <div class="card mt-4 p-3 mb-2 bg-warning-subtle text-emphasis-warning" style="width: 18rem;">
                 <img th:src="${product.url}" class="card-img-top" alt="Foto Ricetta">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${product.name}"></h5>
                     <p class="card-text" th:text="${product.description}"></p>
                     <p class="card-text" th:text="${product.price}">€</p>
-                    <div class="row text-center">
-                        <a class="btn btn-primary col-4" th:href="@{/admin/products/{id}(id=${product.id})}">Detail</a>
-                        <a class="btn btn-primary col-4" th:href="@{/admin/edit/{id}(id=${product.id})}">Edit</a>
-                        <form class="col-4" th:action="@{/admin/products/delete/{id}(id=${product.id})}" method="POST">
+                    <div class="text-center">
+                        <a class="btn btn-primary "
+                           th:href="@{/admin/products/{id}(id=${product.id})}">Detail</a>
+                        <a class="btn btn-primary " th:href="@{/admin/edit/{id}(id=${product.id})}">Edit</a>
+                        <span>
+                        <form th:action="@{/admin/products/delete/{id}(id=${product.id})}" method="POST">
                             <button type="submit" class="btn btn-primary">
                                 Delete
                             </button>
                         </form>
+                        </span>
                     </div>
 
                 </div>
