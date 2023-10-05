@@ -15,7 +15,16 @@ public class Order {
     private LocalDate date;
     private int quantity;
 
+    @ManyToOne
+    private Product product;
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     //getter e setter
     public int getId() {
