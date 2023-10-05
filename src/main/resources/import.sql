@@ -10,10 +10,10 @@ INSERT INTO categories (description, name) VALUES ('Tazzine', 'Tazzina');
 INSERT INTO categories (description, name) VALUES ('Libri', 'Libro');
 
 
-INSERT INTO categories_products (category_id, products_id) VALUES (1,1);
-INSERT INTO categories_products (category_id, products_id) VALUES (1,2);
-INSERT INTO categories_products (category_id, products_id) VALUES (1,3);
-INSERT INTO categories_products (category_id, products_id) VALUES (1,4);
-INSERT INTO categories_products (category_id, products_id) VALUES (1,5);
-INSERT INTO categories_products (category_id, products_id) VALUES (1,6);
-INSERT INTO categories_products (category_id, products_id) VALUES (1,7);
+INSERT INTO products_categories (product_id, categories_id) VALUES (1,1);
+INSERT INTO products_categories (categories_id, product_id) VALUES (1,2);
+INSERT INTO products_categories (categories_id, product_id) VALUES (1,3);
+INSERT INTO products_categories (categories_id, product_id) VALUES (1,4);
+INSERT INTO products_categories (categories_id, product_id) VALUES (1,5);
+INSERT INTO products_categories (categories_id, product_id) VALUES (1,6);
+INSERT INTO products_categories (categories_id, product_id) VALUES (1,7);

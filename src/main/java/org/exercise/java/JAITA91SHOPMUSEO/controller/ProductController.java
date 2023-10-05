@@ -2,6 +2,7 @@ package org.exercise.java.JAITA91SHOPMUSEO.controller;
 
 
 import jakarta.validation.Valid;
+import org.exercise.java.JAITA91SHOPMUSEO.model.Category;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Product;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.CategoryRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.ProductRepository;
@@ -14,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -115,8 +117,16 @@ public class ProductController {
 
     @PostMapping("/admin/products/delete/{id}")
     public String delete(@PathVariable Integer id) {
-        productRepository.deleteById(id);
-        return "redirect:/admin";
+        Optional<Product> productResult = productRepository.findById(id);
+        if (productResult.isPresent()){
+            Product product = productResult.get();
+            product.setCategories(new ArrayList<Category>());
+            productRepository.deleteById(id);
+            return "redirect:/admin";
+        }else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
     }
 
 }
