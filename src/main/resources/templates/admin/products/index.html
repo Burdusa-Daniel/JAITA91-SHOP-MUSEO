@@ -2,50 +2,77 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Admin Gestione Prodotto</title>
+    <style>
+        .card-container {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+        }
 
-    <title>admin gestione prodotto</title>
+        .card-custom {
+            background-color: #f7f7f7;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-custom .card-img-top {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .card-custom .card-title {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card-custom .card-text {
+            color: #666;
+        }
+
+        .btn-custom {
+            background-color: #886644;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-custom:hover {
+            background-color: #654321;
+        }
+    </style>
 </head>
-<body>
-<div class=" text-center" >
-    <h1>admin pagina gestore</h1>
+<body style="background-color: #dcdcdc;">
+<div class="container text-center mt-4 card-container">
+    <h1 class="mb-4">Benvenuto all'Admin Pagina Gestore</h1>
+    <p class="lead">Qui puoi visualizzare e gestire i tuoi prodotti.</p>
     <hr>
 
-    <div class="row bg-info-subtle">
-        <div class="col-2 ">
-        </div>
-
-    <div class="row col-10 bg-success-subtle">
-        <div th:each="product : ${products}" class="col-3">
-
-            <div class="card mt-4 align-middle shadow-sm rounded border border-success p-2 border-opacity-10" style="width: 18rem;">
-                <div>
-                <img th:src="${product.url}" class="img-fluid" style="max-height: 14em;" alt="Foto Ricetta">
-                    <div class="card-img-overlay d-flex">
-                        <div class="row">
-
-                            <a class="col-4 mb-3"  th:href="@{/admin/products/{id}(id=${product.id})}">
-                                <i class="fa-solid fa-book-open"></i>
-                            </a>
-
-                            <a class="col-4 mb-3" th:href="@{/admin/edit/{id}(id=${product.id})}">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-
-                            <form class="col-4 mb-3" th:action="@{/admin/products/delete/{id}(id=${product.id})}" method="POST">
-                                <button type="submit" class="btn" data-bs-toggle="button">
-                                    <i class="fa-solid fa-trash"></i>
+    <div class="row justify-content-center">
+        <div th:each="product : ${products}" class="col-md-4 mb-4">
+            <div class="card card-custom">
+                <img th:src="${product.url}" class="card-img-top" alt="Foto Prodotto">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}"></h5>
+                    <p class="card-text" th:text="${product.description}"></p>
+                    <p class="card-text" th:text="${product.price}">€</p>
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <a class="btn btn-custom btn-block" th:href="@{/admin/products/{id}(id=${product.id})}">Dettagli</a>
+                        </div>
+                        <div class="col-4">
+                            <a class="btn btn-warning btn-block" th:href="@{/admin/edit/{id}(id=${product.id})}">Modifica</a>
+                        </div>
+                        <div class="col-4">
+                            <form th:action="@{/admin/products/delete/{id}(id=${product.id})}" method="POST">
+                                <button type="submit" class="btn btn-danger btn-block">
+                                    Elimina
                                 </button>
                             </form>
                         </div>
-                        <div class="d-flex ">
-                        <h5 class="card-title" th:text="${product.name}"></h5>
-                        <p class="card-text" th:text="${product.description}"></p>
-                        <p class="card-text" th:text="${product.price}">€</p>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -53,9 +80,8 @@
     </div>
 
     <div class="container mt-5">
-        <a class="btn btn-primary" th:href="@{admin/create}">new</a>
+        <a class="btn btn-success" th:href="@{admin/create}">Nuovo Prodotto</a>
     </div>
-
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
