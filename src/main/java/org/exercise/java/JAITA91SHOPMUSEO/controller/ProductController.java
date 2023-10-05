@@ -90,7 +90,7 @@ public class ProductController {
             return "admin/create";
         }
         productRepository.save(productForm);
-        return "redirect:/admin/";
+        return "redirect:/admin";
     }
 
     @PostMapping("/products/buy/{id}")
