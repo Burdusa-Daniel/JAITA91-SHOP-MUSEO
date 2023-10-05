@@ -117,16 +117,10 @@ public class ProductController {
 
     @PostMapping("/admin/products/delete/{id}")
     public String delete(@PathVariable Integer id) {
-        Optional<Product> productResult = productRepository.findById(id);
-        if (productResult.isPresent()){
-            Product product = productResult.get();
-            product.setCategories(new ArrayList<Category>());
-            productRepository.deleteById(id);
-            return "redirect:/admin";
-        }else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+        productService.getById(id).getCategories().clear();
+        productRepository.deleteById(id);
 
+        return "redirect:/admin";
     }
 
 }
