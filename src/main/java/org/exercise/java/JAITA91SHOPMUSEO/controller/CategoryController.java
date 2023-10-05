@@ -27,19 +27,19 @@ public class CategoryController {
     @GetMapping
     public String categories(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
-        return "categories/index";
+        return "admin/categories/index";
     }
 
     @GetMapping("/edit/{id}")
     public String editCategory(Model model, @PathVariable Integer id) {
         model.addAttribute("category", categoryService.getById(id));
-        return "categories/edit";
+        return "admin/categories/edit";
     }
 
     @PostMapping("/edit/{id}")
     public String editCategory(@Valid @ModelAttribute Category category, BindingResult bindingResult, @PathVariable Integer id) {
         if (bindingResult.hasErrors()) {
-            return "categories/edit";
+            return "admin/categories/edit";
         }
 
         categoryRepository.save(category);
@@ -49,13 +49,13 @@ public class CategoryController {
     @GetMapping("/create")
     public String createCategory(Model model) {
         model.addAttribute("category", new Category());
-        return "categories/create";
+        return "admin/categories/create";
     }
 
     @PostMapping("/create")
     public String createCategory(@Valid @ModelAttribute Category category, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "categories/create";
+            return "admin/categories/create";
         }
 
         categoryRepository.save(category);
