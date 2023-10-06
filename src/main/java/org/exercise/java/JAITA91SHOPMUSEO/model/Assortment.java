@@ -8,22 +8,34 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "assortments")
 public class Assortment {
+
     //attributi
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private LocalDate date;
+
     private int quantity;
     private String supplierName;
     private BigDecimal price;
+    @ManyToOne
+    private Product product;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     //getter e setter
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -58,4 +70,5 @@ public class Assortment {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
 }

@@ -2,8 +2,10 @@ package org.exercise.java.JAITA91SHOPMUSEO.controller;
 
 
 import jakarta.validation.Valid;
+import org.exercise.java.JAITA91SHOPMUSEO.model.Assortment;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Order;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Product;
+import org.exercise.java.JAITA91SHOPMUSEO.repository.AssortmentRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.CategoryRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.OrderRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.ProductRepository;
@@ -26,18 +28,21 @@ public class ProductController {
 
     private final CategoryRepository categoryRepository;
     private final OrderRepository orderRepository;
+    private final AssortmentRepository assortmentRepository;
 
     @Autowired
     public ProductController(
             ProductService productService,
             ProductRepository productRepository,
             CategoryRepository categoryRepository,
-            OrderRepository orderRepository
+            OrderRepository orderRepository,
+            AssortmentRepository assortmentRepository
     ) {
         this.productService = productService;
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
         this.orderRepository = orderRepository;
+        this.assortmentRepository = assortmentRepository;
     }
 
 
@@ -59,6 +64,7 @@ public class ProductController {
     public String detail(@PathVariable Integer id, Model model) {
         model.addAttribute("product", productService.getById(id));
         model.addAttribute("order", new Order());
+
         return "products/detail";
     }
 
@@ -87,10 +93,10 @@ public class ProductController {
     ) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("categories", categoryRepository.findAll());
-            return "admin/create";
+            return "admin/products/create";
         }
         productRepository.save(productForm);
-        return "redirect:/admin/";
+        return "redirect:/admin";
     }
 
     @PostMapping("/products/buy/{id}")
@@ -99,9 +105,56 @@ public class ProductController {
     ) {
         order.setProduct(productService.getById(id));
         order.setDate(LocalDate.now());
+        order.setId(null);
         orderRepository.save(order);
+
+        Product product = productService.getById(id);
+        product.getOrders().add(order);
+
+        productRepository.save(product);
         return "redirect:/products/" + id;
     }
+
+
+
+
+    @GetMapping("/admin/products/restock/{id}")
+    public String restock(
+            Model model, @PathVariable Integer id
+    ) {
+        Assortment assortment = new Assortment();
+        assortment.setProduct(productService.getById(id));
+        model.addAttribute("assortment", assortment);
+        return "/admin/products/restock";
+    }
+
+    @PostMapping("/admin/products/restock/{id}")
+    public String restock(
+            @ModelAttribute Assortment assortment,
+            @PathVariable Integer id,
+            BindingResult bindingResult
+    ) {
+        if (bindingResult.hasErrors()) {
+            return "/admin/products/restock";
+        }
+
+        assortment.setDate(LocalDate.now());
+        assortment.setId(null);
+        assortmentRepository.save(assortment);
+
+        Product product = productService.getById(id);
+        product.getAssortments().add(assortment);
+
+
+        productRepository.save(product);
+
+
+
+        return "redirect:/admin";
+    }
+
+
+
 
     //---------Edit------------------
 

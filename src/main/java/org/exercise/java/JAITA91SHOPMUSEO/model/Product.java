@@ -28,8 +28,43 @@ public class Product {
     @ManyToMany
     List<Category> categories;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+    private List<Order> orders;
 
-    //GETTER E SETTER
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+    private List<Assortment> assortments;
+
+    public Integer getAvailable() {
+        int fromOrders = 0;
+        for (Order order : orders) {
+            fromOrders += order.getQuantity();
+        }
+
+        int storageAvailable = 0;
+        for (Assortment assortment : assortments) {
+            storageAvailable += assortment.getQuantity();
+        }
+        int available = storageAvailable - fromOrders;
+        if (available < 0) available = 0;
+        return available;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public List<Assortment> getAssortments() {
+        return assortments;
+    }
+
+    public void setAssortments(List<Assortment> assortments) {
+        this.assortments = assortments;
+    }
+//GETTER E SETTER
 
 
     public List<Category> getCategories() {

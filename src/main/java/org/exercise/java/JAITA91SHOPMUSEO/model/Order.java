@@ -11,7 +11,7 @@ public class Order {
     //attributi
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private LocalDate date;
     private int quantity;
 
@@ -27,11 +27,11 @@ public class Order {
     }
 
     //getter e setter
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
