@@ -13,31 +13,34 @@
     <h1>ACQUISTA IL NOSTRO PRODOTTO</h1>
     <hr>
     <div class="row">
-        <div class="col-6">
-            <img th:src="${product.url}"></img>
-            <h2 th:text="${product.name}"></h2>
-            <h5 th:text="${product.description}"></h5>
-            <p th:text="|${product.price}€|"></p>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h2 th:text="${product.name}" class="card-title"></h2>
+                <h5 th:text="${product.description}" class="card-text"></h5>
+                <div th:each="category : ${product.categories}" class="card-body">
+                    <h5 th:text="${category.name}" class="card-title"></h5>
+                    <p th:text="${category.description}" class="card-text"></p>
+                </div>
+                <p th:text="|${product.price}€|"></p>
+                <form
+                        method="POST"
+                        th:action="@{/products/buy/{id}(id=${product.id})}"
+                        th:object="${order}"
+                >
+                    <label class="form-label"> Quantità
+                        <input class="form-control" type="number" min="1" th:field="${order.quantity}">
+                    </label>
+
+                    <button type="submit" class="btn btn-primary">compra</button>
+                </form>
+            </div>
         </div>
-        <div class="col-6">
-            <ul th:each="category : ${product.categories}">
-                <li th:text="${category.name}"></li>
-                <li th:text="${category.description}"></li>
-            </ul>
+
+        <div class="text-center col-4">
+            <img th:src="${product.url}" class="rounded">
         </div>
+
     </div>
-
-    <form
-            method="POST"
-            th:action="@{/products/buy/{id}(id=${product.id})}"
-            th:object="${order}"
-    >
-        <label class="form-label"> Quantità
-            <input class="form-control" type="number" min="1" th:field="${order.quantity}">
-        </label>
-
-        <button type="submit" class="btn btn-primary">compra</button>
-    </form>
 
 </div>
 
