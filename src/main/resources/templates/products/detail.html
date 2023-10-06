@@ -1,46 +1,95 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html data-bs-theme="light" lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>detail for user</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title th:text="${product.name}"></title>
 </head>
-<body>
-<div class="container text-center">
-    <h1>DETTAGLI PRODOTTO</h1>
 
-    <h1>ACQUISTA IL NOSTRO PRODOTTO</h1>
-    <hr>
+<body>
+<div class="container">
     <div class="row">
-        <div class="col-6">
-            <img th:src="${product.url}"></img>
-            <h2 th:text="${product.name}"></h2>
-            <h5 th:text="${product.description}"></h5>
-            <p th:text="|${product.price}€|"></p>
-        </div>
-        <div class="col-6">
-            <ul th:each="category : ${product.categories}">
-                <li th:text="${category.name}"></li>
-                <li th:text="${category.description}"></li>
-            </ul>
+        <div class="col text-bg-light">
+            <div class="d-flex">
+                <img th:src="${product.url}" width="500px" style="margin-right: 60px;"/>
+                <div class="text-start d-flex flex-column justify-content-center" style="width: 100%;">
+                    <h1 th:text="${product.name}"></h1>
+                    <div class="text-warning d-flex">
+                        <div th:with="leftover=${5 - product.averageRating}">
+                            <i th:if="${product.averageRating > 0}" th:each="i : ${#numbers.sequence(0, product.averageRating - 1)}" class="fa fa-star fs-3"></i>
+                            <i th:each="i : ${#numbers.sequence(0, leftover - 1)}" class="fa fa-star-o fs-3"></i>
+                        </div>
+                        <h4 th:text="|(${product.reviews.size()})|"></h4>
+                    </div>
+                    <h1 th:text="|${product.price}€|"></h1>
+                    <div>
+                        <form
+                                class="d-flex"
+                                method="post"
+                                th:action="@{/products/buy/{id}(id=${product.id})}"
+                        >
+                            <input class="form-control" type="number" style="width: 80px;" min="1" step="1" value="1"/>
+                            <button class="btn btn-primary" type="button" style="width: 100%;">COMPRA</button>
+                        </form>
+                    </div>
+                    <h4>Descrizione</h4>
+                    <p th:text="${product.description}"></p>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col text-bg-light">
+            <h1 class="text-center">Recensioni</h1>
+            <div th:each="rev : ${product.reviews}" class="d-flex">
+                <i class="fa fa-user-circle" style="font-size: 160px;margin-right: 30px;"></i>
+                <div class="d-flex flex-column" style="width: 100%;">
+                    <h4 th:text="${rev.name}"></h4>
+                    <div class="text-warning d-flex">
+                        <div th:with="leftover=${5 - rev.stars}">
+                            <i th:if="${rev.stars > 0}" th:each="i : ${#numbers.sequence(0, rev.stars - 1)}" class="fa fa-star fs-3"></i>
+                            <i th:each="i : ${#numbers.sequence(0, leftover - 1)}" class="fa fa-star-o fs-3"></i>
+                        </div>
+                    </div>
+                    <h1 th:text="${rev.title}"></h1>
+                    <p th:text="${rev.description}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-bg-light">
+            <h1 class="text-center">Scrivi recensione</h1>
+            <form
+                    method="POST"
+                    th:action="@{/products/{id}/review/create(id=${product.id})}"
+                    th:object="${review}"
+            >
+                <label class="form-label">Nome
+                    <input required class="form-control" th:field="*{name}" type="text"/>
+                </label>
 
-    <form
-            method="POST"
-            th:action="@{/products/buy/{id}(id=${product.id})}"
-            th:object="${order}"
-    >
-        <label class="form-label"> Quantità
-            <input class="form-control" type="number" min="1" th:field="${order.quantity}">
-        </label>
+                <label
+                    class="form-label">Titolo Recensione
+                    <input required class="form-control" th:field="*{title}" type="text"/>
+                </label>
 
-        <button type="submit" class="btn btn-primary">compra</button>
-    </form>
+                <label class="form-label">Stelle
+                    <input required class="form-control" type="number" min="0" max="5" th:field="*{stars}">
+                </label>
 
+                <label class="form-label" style="width: 100%;">Recensione
+                    <textarea required class="form-control" th:field="*{description}" style="height: 142px;"></textarea>
+                </label>
+
+                <button class="btn btn-primary" type="submit" style="width: 100%;">INVIA</button>
+            </form>
+        </div>
+    </div>
 </div>
-
-
 </body>
+
 </html>

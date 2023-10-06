@@ -34,6 +34,28 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<Assortment> assortments;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+    private List<Review> reviews;
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public Integer getAverageRating() {
+        if (reviews.size() == 0) return 0;
+
+        Integer stars = 0;
+        for (Review review : reviews) {
+            stars += review.getStars();
+        }
+
+        return (stars / reviews.size());
+    }
+
     public Integer getAvailable() {
         int fromOrders = 0;
         for (Order order : orders) {

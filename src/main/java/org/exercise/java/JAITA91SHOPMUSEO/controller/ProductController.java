@@ -5,10 +5,8 @@ import jakarta.validation.Valid;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Assortment;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Order;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Product;
-import org.exercise.java.JAITA91SHOPMUSEO.repository.AssortmentRepository;
-import org.exercise.java.JAITA91SHOPMUSEO.repository.CategoryRepository;
-import org.exercise.java.JAITA91SHOPMUSEO.repository.OrderRepository;
-import org.exercise.java.JAITA91SHOPMUSEO.repository.ProductRepository;
+import org.exercise.java.JAITA91SHOPMUSEO.model.Review;
+import org.exercise.java.JAITA91SHOPMUSEO.repository.*;
 import org.exercise.java.JAITA91SHOPMUSEO.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +27,7 @@ public class ProductController {
     private final CategoryRepository categoryRepository;
     private final OrderRepository orderRepository;
     private final AssortmentRepository assortmentRepository;
+    private final ReviewRepository reviewRepository;
 
     @Autowired
     public ProductController(
@@ -36,13 +35,15 @@ public class ProductController {
             ProductRepository productRepository,
             CategoryRepository categoryRepository,
             OrderRepository orderRepository,
-            AssortmentRepository assortmentRepository
+            AssortmentRepository assortmentRepository,
+            ReviewRepository reviewRepository
     ) {
         this.productService = productService;
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
         this.orderRepository = orderRepository;
         this.assortmentRepository = assortmentRepository;
+        this.reviewRepository = reviewRepository;
     }
 
 
@@ -64,6 +65,7 @@ public class ProductController {
     public String detail(@PathVariable Integer id, Model model) {
         model.addAttribute("product", productService.getById(id));
         model.addAttribute("order", new Order());
+        model.addAttribute("review", new Review());
 
         return "products/detail";
     }
@@ -112,6 +114,22 @@ public class ProductController {
         product.getOrders().add(order);
 
         productRepository.save(product);
+        return "redirect:/products/" + id;
+    }
+
+    @PostMapping("/products/{id}/review/create")
+    public String createReview(
+            @PathVariable Integer id, @ModelAttribute Review review
+    ) {
+        review.setProduct(productService.getById(id));
+        review.setId(null);
+        reviewRepository.save(review);
+
+        Product product = productService.getById(id);
+        product.getReviews().add(review);
+
+        productRepository.save(product);
+
         return "redirect:/products/" + id;
     }
 
