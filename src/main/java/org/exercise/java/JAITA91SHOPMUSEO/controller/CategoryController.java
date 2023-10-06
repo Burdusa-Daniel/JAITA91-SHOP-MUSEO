@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Category;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Product;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.CategoryRepository;
+import org.exercise.java.JAITA91SHOPMUSEO.repository.ProductRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.service.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,13 +17,15 @@ public class CategoryController {
 
     private final CategoryRepository categoryRepository;
     private final CategoryService categoryService;
+    private final ProductRepository productRepository;
 
     public CategoryController(
             CategoryRepository categoryRepository,
-            CategoryService categoryService
+            CategoryService categoryService, ProductRepository productRepository
     ) {
         this.categoryRepository = categoryRepository;
         this.categoryService = categoryService;
+        this.productRepository = productRepository;
     }
 
     @GetMapping
@@ -65,12 +68,12 @@ public class CategoryController {
 
     @PostMapping("/delete/{id}")
     public String deleteCategory(@PathVariable Integer id) {
-
         Category category = categoryService.getById(id);
+
         for (Product product : category.getProducts()) {
             product.getCategories().remove(category);
+            productRepository.save(product);
         }
-        categoryRepository.save(category);
 
         categoryRepository.deleteById(id);
 

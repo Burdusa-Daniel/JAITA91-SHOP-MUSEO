@@ -44,9 +44,8 @@ public class Product {
         for (Assortment assortment : assortments) {
             storageAvailable += assortment.getQuantity();
         }
-        int available = storageAvailable - fromOrders;
-        if (available < 0) available = 0;
-        return available;
+
+        return storageAvailable - fromOrders;
     }
 
     public List<Order> getOrders() {

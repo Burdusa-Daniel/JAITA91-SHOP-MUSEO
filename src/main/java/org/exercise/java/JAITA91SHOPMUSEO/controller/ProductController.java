@@ -182,9 +182,6 @@ public class ProductController {
 
     @PostMapping("/admin/products/delete/{id}")
     public String delete(@PathVariable Integer id) {
-        Product product = productService.getById(id);
-        product.getCategories().clear();
-        productRepository.save(product);
         productRepository.deleteById(id);
 
         return "redirect:/admin";

@@ -52,6 +52,7 @@
     </style>
 </head>
 <body style="background-color: #dcdcdc;">
+<a href="/">Area Utenti</a>
 <div class="container text-center mt-4 card-container">
     <h1 class="mb-4">Benvenuto all'Admin Pagina Gestore</h1>
     <p class="lead">Qui puoi visualizzare e gestire i tuoi prodotti.</p>
@@ -64,8 +65,9 @@
                 <div class="card-body">
                     <h5 class="card-title" th:text="${product.name}"></h5>
                     <p class="card-text" th:text="${product.description}"></p>
-                    <p class="card-text" th:text="${product.price}">€</p>
-                    <p class="card-text" th:text="|${product.available} in magazzino|"></p>
+                    <p class="card-text" th:text="|${product.price}€|"></p>
+                    <p class="card-text" th:if="${product.available < 0}" th:text="|${product.available * -1} ordini in attesa|"></p>
+                    <p class="card-text" th:text="|${T(java.lang.Math).max(product.available, 0)} in magazzino|"></p>
                     <div class="warning mb-2" th:if="${product.available <= 5}">
                         <span class="badge badge-danger mb-2">Esaurimento scorte!</span>
                     </div>
