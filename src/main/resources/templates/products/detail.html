@@ -29,10 +29,11 @@
                         <form
                                 class="d-flex"
                                 method="post"
+                                th:object="${order}"
                                 th:action="@{/products/buy/{id}(id=${product.id})}"
                         >
-                            <input class="form-control" type="number" style="width: 80px;" min="1" step="1" value="1"/>
-                            <button class="btn btn-primary" type="button" style="width: 100%;">COMPRA</button>
+                            <input class="form-control" type="number" th:field="*{quantity}" style="width: 80px;" min="1" step="1" value="1"/>
+                            <button class="btn btn-primary" type="submit" style="width: 100%;">COMPRA</button>
                         </form>
                     </div>
                     <h4>Descrizione</h4>
