@@ -2,13 +2,13 @@ package org.exercise.java.JAITA91SHOPMUSEO.controller;
 
 
 import jakarta.validation.Valid;
-import org.exercise.java.JAITA91SHOPMUSEO.model.Assortment;
-import org.exercise.java.JAITA91SHOPMUSEO.model.Order;
-import org.exercise.java.JAITA91SHOPMUSEO.model.Product;
-import org.exercise.java.JAITA91SHOPMUSEO.model.Review;
+import org.exercise.java.JAITA91SHOPMUSEO.model.*;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.*;
+import org.exercise.java.JAITA91SHOPMUSEO.security.DatabaseUserDetails;
 import org.exercise.java.JAITA91SHOPMUSEO.service.ProductService;
+import org.exercise.java.JAITA91SHOPMUSEO.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +28,8 @@ public class ProductController {
     private final OrderRepository orderRepository;
     private final AssortmentRepository assortmentRepository;
     private final ReviewRepository reviewRepository;
+    private final UserService userService;
+    private final UserRepository userRepository;
 
     @Autowired
     public ProductController(
@@ -36,7 +38,8 @@ public class ProductController {
             CategoryRepository categoryRepository,
             OrderRepository orderRepository,
             AssortmentRepository assortmentRepository,
-            ReviewRepository reviewRepository
+            ReviewRepository reviewRepository, UserService userService,
+            UserRepository userRepository
     ) {
         this.productService = productService;
         this.productRepository = productRepository;
@@ -44,6 +47,8 @@ public class ProductController {
         this.orderRepository = orderRepository;
         this.assortmentRepository = assortmentRepository;
         this.reviewRepository = reviewRepository;
+        this.userService = userService;
+        this.userRepository = userRepository;
     }
 
 
@@ -103,31 +108,44 @@ public class ProductController {
 
     @PostMapping("/products/buy/{id}")
     public String buy(
-            @PathVariable Integer id, @ModelAttribute Order order
+            @PathVariable Integer id, @ModelAttribute Order order, Authentication authentication
     ) {
+        Integer buyerId = ((DatabaseUserDetails) authentication.getPrincipal()).getId();
+        User buyer = userService.findById(buyerId);
+        Product product = productService.getById(id);
+
         order.setProduct(productService.getById(id));
         order.setDate(LocalDate.now());
         order.setId(null);
+        order.setBuyer(buyer);
         orderRepository.save(order);
 
-        Product product = productService.getById(id);
-        product.getOrders().add(order);
+        buyer.getOrders().add(order);
+        userRepository.save(buyer);
 
+        product.getOrders().add(order);
         productRepository.save(product);
+
         return "redirect:/products/" + id;
     }
 
     @PostMapping("/products/{id}/review/create")
     public String createReview(
-            @PathVariable Integer id, @ModelAttribute Review review
+            @PathVariable Integer id, @ModelAttribute Review review, Authentication authentication
     ) {
-        review.setProduct(productService.getById(id));
+        Integer buyerId = ((DatabaseUserDetails) authentication.getPrincipal()).getId();
+        User reviewer = userService.findById(buyerId);
+        Product product = productService.getById(id);
+
         review.setId(null);
+        review.setProduct(productService.getById(id));
+        review.setReviewer(reviewer);
         reviewRepository.save(review);
 
-        Product product = productService.getById(id);
-        product.getReviews().add(review);
+        reviewer.getReviews().add(review);
+        userRepository.save(reviewer);
 
+        product.getReviews().add(review);
         productRepository.save(product);
 
         return "redirect:/products/" + id;

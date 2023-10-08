@@ -52,7 +52,7 @@
                     <div class="text-warning d-flex">
                         <div th:with="leftover=${5 - rev.stars}">
                             <i th:if="${rev.stars > 0}" th:each="i : ${#numbers.sequence(0, rev.stars - 1)}" class="fa fa-star fs-3"></i>
-                            <i th:each="i : ${#numbers.sequence(0, leftover - 1)}" class="fa fa-star-o fs-3"></i>
+                            <i th:if="${rev.stars != 5}" th:each="i : ${#numbers.sequence(0, leftover - 1)}" class="fa fa-star-o fs-3"></i>
                         </div>
                     </div>
                     <h1 th:text="${rev.title}"></h1>
@@ -69,10 +69,6 @@
                     th:action="@{/products/{id}/review/create(id=${product.id})}"
                     th:object="${review}"
             >
-                <label class="form-label">Nome
-                    <input required class="form-control" th:field="*{name}" type="text"/>
-                </label>
-
                 <label
                     class="form-label">Titolo Recensione
                     <input required class="form-control" th:field="*{title}" type="text"/>

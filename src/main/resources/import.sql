@@ -18,4 +18,16 @@ INSERT INTO products_categories (categories_id, products_id) VALUES (3,3);
 INSERT INTO products_categories (categories_id, products_id) VALUES (4,4);
 INSERT INTO products_categories (categories_id, products_id) VALUES (5,5);
 
-INSERT INTO users (id, name) VALUES (1, 'Jaita91')
+
+INSERT INTO roles(id, name) VALUES(1, 'ADMIN');
+INSERT INTO roles(id, name) VALUES(2, 'USER');
+
+INSERT INTO users (id, first_name, last_name, registration_date, username, password) VALUES (1,'Admin', '1', '2023-01-01', 'admin1', '{noop}admin');
+INSERT INTO users (id, first_name, last_name, registration_date, username, password) VALUES (2,'User', '1', '2023-05-05', 'user1', '{noop}user');
+
+
+INSERT INTO users_roles(user_id, roles_id) VALUES(1, 1);
+INSERT INTO users_roles(user_id, roles_id) VALUES(2, 2);
+
+
+

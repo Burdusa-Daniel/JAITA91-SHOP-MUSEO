@@ -10,13 +10,22 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String name;
     private String title;
     private String description;
     private Integer stars;
 
     @ManyToOne
+    private User reviewer;
+    @ManyToOne
     private Product product;
+
+    public User getReviewer() {
+        return reviewer;
+    }
+
+    public void setReviewer(User reviewer) {
+        this.reviewer = reviewer;
+    }
 
     public Product getProduct() {
         return product;
@@ -43,11 +52,7 @@ public class Review {
     }
 
     public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        return reviewer.getFullName();
     }
 
     public String getTitle() {

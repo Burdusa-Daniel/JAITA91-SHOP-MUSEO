@@ -53,7 +53,7 @@ public class Product {
             stars += review.getStars();
         }
 
-        return (stars / reviews.size());
+        return (int) Math.round((double) stars / reviews.size());
     }
 
     public Integer getAvailable() {
