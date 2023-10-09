@@ -21,8 +21,6 @@ public class CategoryController {
     private final ProductRepository productRepository;
 
     @Autowired
-
-
     public CategoryController(
             CategoryRepository categoryRepository,
             CategoryService categoryService, ProductRepository productRepository
