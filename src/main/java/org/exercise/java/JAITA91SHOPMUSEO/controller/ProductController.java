@@ -107,8 +107,8 @@ public class ProductController {
     }
 
     @PostMapping("/products/buy/{id}")
-    public String buy(
-            @PathVariable Integer id, @ModelAttribute Order order, Authentication authentication
+    public String buy(Model model,
+                      @PathVariable Integer id, @ModelAttribute Order order, Authentication authentication
     ) {
         Integer buyerId = ((DatabaseUserDetails) authentication.getPrincipal()).getId();
         User buyer = userService.findById(buyerId);
@@ -126,8 +126,12 @@ public class ProductController {
         product.getOrders().add(order);
         productRepository.save(product);
 
-        return "redirect:/products/" + id;
+        model.addAttribute("order", order);
+        model.addAttribute("product", product);
+
+        return "/products/purchased";
     }
+
 
     @PostMapping("/products/{id}/review/create")
     public String createReview(
@@ -150,8 +154,6 @@ public class ProductController {
 
         return "redirect:/products/" + id;
     }
-
-
 
 
     @GetMapping("/admin/products/restock/{id}")
@@ -185,11 +187,8 @@ public class ProductController {
         productRepository.save(product);
 
 
-
         return "redirect:/admin";
     }
-
-
 
 
     //---------Edit------------------
