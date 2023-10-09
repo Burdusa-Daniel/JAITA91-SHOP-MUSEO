@@ -7,6 +7,7 @@
     <title>Edit</title>
 </head>
 <body>
+<nav th:replace="fragments/navbar :: navbar(area='storage')"></nav>
 <div class="container text-center">
     <h1 class="mb-4">Modifica il Prodotto</h1>
     <form th:action="@{/admin/edit/{id}(id=${product.id})}"

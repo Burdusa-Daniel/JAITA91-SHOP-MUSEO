@@ -1,4 +1,4 @@
-<html data-bs-theme="light" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html data-bs-theme="light" lang="en" xmlns:sec="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8"/>
@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<nav th:replace="fragments/navbar :: navbar(area='catalog')"></nav>
 <div class="container">
     <div class="row">
         <div class="col text-bg-light">
@@ -25,7 +26,7 @@
                         <h4 th:text="|(${product.reviews.size()})|"></h4>
                     </div>
                     <h1 th:text="|${product.price}€|"></h1>
-                    <div>
+                    <div sec:authorize="isAuthenticated()">
                         <form
                                 class="d-flex"
                                 method="post"
@@ -61,7 +62,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div sec:authorize="isAuthenticated()" class="row">
         <div class="col text-bg-light">
             <h1 class="text-center">Scrivi recensione</h1>
             <form

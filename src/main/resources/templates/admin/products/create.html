@@ -7,6 +7,7 @@
     <title>Create</title>
 </head>
 <body>
+<nav th:replace="fragments/navbar :: navbar(area='storage')"></nav>
 <div class="container text-center">
     <h1 class="mb-4">Crea un Nuovo Prodotto</h1>
     <form th:action="@{/admin/create}" id="prodotto-create" method="POST" th:object="${product}">
