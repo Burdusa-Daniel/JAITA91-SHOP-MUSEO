@@ -10,6 +10,9 @@ INSERT INTO categories (description, name) VALUES ('Borse', 'Borsa');
 INSERT INTO categories (description, name) VALUES ('Penne', 'Penna');
 INSERT INTO categories (description, name) VALUES ('Cartoline', 'Cartolina');
 
+INSERT INTO macro_category (name, description) VALUES ("Abbigliamento", "il nostro abbigliamento");
+INSERT INTO macro_category (name, description) VALUES ("Gadget", "i nostri gadget");
+
 
 
 INSERT INTO products_categories (categories_id, products_id) VALUES (1,1);
