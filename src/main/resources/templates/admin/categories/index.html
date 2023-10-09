@@ -10,22 +10,47 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar(area='categories')"></nav>
 <div class="container text-center">
-    <h1 class="mb-4">Categorie</h1>
 
-    <div class="vstack gap-3">
-        <div th:each="category : ${categories}">
-            <span th:text="${category.name}"></span>
-            <a class="btn btn-primary btn-sm" th:href="@{/admin/categories/edit/{id}(id=${category.id})}">Modifica</a>
-            <form method="POST" style="display: inline;"
-                  th:action="@{/admin/categories/delete/{id}(id=${category.id})}">
-                <button class="btn btn-danger btn-sm" type="submit">Elimina</button>
-            </form>
+    <div class="row">
+        <div class="col-6">
+            <h1>CATEGORIE</h1>
+            <ul th:each="category : ${categories}" class="list-group list-group-flush">
+                <span>
+                <li th:text="${category.name}" class="list-group-item"></li>
+                <a class="btn btn-primary btn-sm"
+                   th:href="@{/admin/categories/edit/{id}(id=${category.id})}">Modifica</a>
+                <form method="POST" style="display: inline;"
+                      th:action="@{/admin/categories/delete/{id}(id=${category.id})}">
+                    <button class="btn btn-danger btn-sm" type="submit">Elimina</button>
+                </form>
+                </span>
+            </ul>
+            <div class="mt-4">
+                <a class="btn btn-success" th:href="@{/admin/categories/create}">Aggiungi Categoria</a>
+                <a class="btn btn-secondary" th:href="@{/admin}">Indietro</a>
+            </div>
         </div>
+        <div class="col-6">
+            <h1>MACROCATEGORIE</h1>
+            
+        </div>
+
     </div>
 
 
-    <a class="btn btn-success" th:href="@{/admin/categories/create}">Aggiungi Categoria</a>
-    <a class="btn btn-secondary" th:href="@{/admin}">Indietro</a>
+    <!-- <h1 class="mb-4">Categorie</h1>
+
+     <div class="vstack gap-3">
+         <div th:each="category : ${categories}">
+             <span th:text="${category.name}"></span>
+             <a class="btn btn-primary btn-sm" th:href="@{/admin/categories/edit/{id}(id=${category.id})}">Modifica</a>
+             <form method="POST" style="display: inline;"
+                   th:action="@{/admin/categories/delete/{id}(id=${category.id})}">
+                 <button class="btn btn-danger btn-sm" type="submit">Elimina</button>
+             </form>
+         </div>
+     </div> -->
+
 </div>
 
 <script crossorigin="anonymous"
