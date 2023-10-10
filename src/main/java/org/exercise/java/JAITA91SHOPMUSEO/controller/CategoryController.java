@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Category;
 import org.exercise.java.JAITA91SHOPMUSEO.model.Product;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.CategoryRepository;
+import org.exercise.java.JAITA91SHOPMUSEO.repository.MacroCategoryRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.ProductRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,26 +20,32 @@ public class CategoryController {
     private final CategoryRepository categoryRepository;
     private final CategoryService categoryService;
     private final ProductRepository productRepository;
+    private final MacroCategoryRepository macroCategoryRepository;
 
     @Autowired
     public CategoryController(
             CategoryRepository categoryRepository,
-            CategoryService categoryService, ProductRepository productRepository
+            CategoryService categoryService, ProductRepository productRepository,
+            MacroCategoryRepository macroCategoryRepository
     ) {
         this.categoryRepository = categoryRepository;
         this.categoryService = categoryService;
         this.productRepository = productRepository;
+        this.macroCategoryRepository = macroCategoryRepository;
     }
 
     @GetMapping
     public String categories(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("macroCategories", macroCategoryRepository.findAll());
         return "admin/categories/index";
     }
 
     @GetMapping("/edit/{id}")
     public String editCategory(Model model, @PathVariable Integer id) {
         model.addAttribute("category", categoryService.getById(id));
+
+        model.addAttribute("macroCategories", macroCategoryRepository.findAll());
         return "admin/categories/edit";
     }
 
@@ -49,12 +56,17 @@ public class CategoryController {
         }
 
         categoryRepository.save(category);
+
+
+        category.getMacroCategory().getCategories().add(category);
+        macroCategoryRepository.save(category.getMacroCategory());
         return "redirect:/admin/categories";
     }
 
     @GetMapping("/create")
     public String createCategory(Model model) {
         model.addAttribute("category", new Category());
+        model.addAttribute("macroCategories", macroCategoryRepository.findAll());
         return "admin/categories/create";
     }
 
@@ -63,8 +75,10 @@ public class CategoryController {
         if (bindingResult.hasErrors()) {
             return "admin/categories/create";
         }
-
         categoryRepository.save(category);
+
+        category.getMacroCategory().getCategories().add(category);
+        macroCategoryRepository.save(category.getMacroCategory());
         return "redirect:/admin/categories";
     }
 

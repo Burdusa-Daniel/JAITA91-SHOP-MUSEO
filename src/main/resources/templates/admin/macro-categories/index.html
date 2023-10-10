@@ -10,21 +10,21 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar(area='categories')"></nav>
 <div class="container text-center">
-    <h1 class="mb-4">Categorie</h1>
+    <h1 class="mb-4">Macro Categorie</h1>
 
     <div class="vstack gap-3">
-        <div th:each="category : ${categories}">
+        <div th:each="category : ${macroCategories}">
             <span th:text="${category.name}"></span>
-            <a class="btn btn-primary btn-sm" th:href="@{/admin/categories/edit/{id}(id=${category.id})}">Modifica</a>
+            <a class="btn btn-primary btn-sm" th:href="@{/admin/macro-categories/edit/{id}(id=${category.id})}">Modifica</a>
             <form method="POST" style="display: inline;"
-                  th:action="@{/admin/categories/delete/{id}(id=${category.id})}">
+                  th:action="@{/admin/macro-categories/delete/{id}(id=${category.id})}">
                 <button class="btn btn-danger btn-sm" type="submit">Elimina</button>
             </form>
         </div>
     </div>
 
 
-    <a class="btn btn-success" th:href="@{/admin/categories/create}">Aggiungi Categoria</a>
+    <a class="btn btn-success" th:href="@{/admin/macro-categories/create}">Aggiungi Macro Categoria</a>
     <a class="btn btn-secondary" th:href="@{/admin}">Indietro</a>
 </div>
 

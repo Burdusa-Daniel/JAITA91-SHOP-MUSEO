@@ -63,6 +63,7 @@ public class MacroCategoryController {
     @GetMapping("/create")
     public String createMacroCategory(Model model) {
         model.addAttribute("macroCategory", new MacroCategory());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "admin/macro-categories/create";
     }
 
@@ -76,7 +77,7 @@ public class MacroCategoryController {
         }
 
         macroCategoryRepository.save(macroCategory);
-        return "redirect:/admin/macro-categories";
+        return "redirect:/admin/categories";
     }
 
     @PostMapping("/delete/{id}")
@@ -90,7 +91,7 @@ public class MacroCategoryController {
 
         macroCategoryRepository.deleteById(id);
 
-        return "redirect:/admin/macro-categories";
+        return "redirect:/admin/categories";
     }
 
 }

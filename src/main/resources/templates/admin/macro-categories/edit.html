@@ -10,11 +10,11 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar(area='categories')"></nav>
 <div class="container text-center">
-    <h1 class="mb-4">Modifica Categoria</h1>
-    <form th:action="@{/admin/categories/edit/{id}(id=${category.id})}"
+    <h1 class="mb-4">Modifica Macro Categoria</h1>
+    <form th:action="@{/admin/macro-categories/edit/{id}(id=${macroCategory.id})}"
           id="categoria-edit"
           method="POST"
-          th:object="${category}"
+          th:object="${macroCategory}"
           class="container-form"
     >
         <div class="mb-3">

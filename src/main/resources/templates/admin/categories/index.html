@@ -32,7 +32,21 @@
         </div>
         <div class="col-6">
             <h1>MACROCATEGORIE</h1>
-            
+            <ul th:each="category : ${macroCategories}" class="list-group list-group-flush">
+                <span>
+                <li th:text="${category.name}" class="list-group-item"></li>
+                <a class="btn btn-primary btn-sm"
+                   th:href="@{/admin/macro-categories/edit/{id}(id=${category.id})}">Modifica</a>
+                <form method="POST" style="display: inline;"
+                      th:action="@{/admin/macro-categories/delete/{id}(id=${category.id})}">
+                    <button class="btn btn-danger btn-sm" type="submit">Elimina</button>
+                </form>
+                </span>
+            </ul>
+            <div class="mt-4">
+                <a class="btn btn-success" th:href="@{/admin/macro-categories/create}">Aggiungi Macro Categoria</a>
+                <a class="btn btn-secondary" th:href="@{/admin}">Indietro</a>
+            </div>
         </div>
 
     </div>
