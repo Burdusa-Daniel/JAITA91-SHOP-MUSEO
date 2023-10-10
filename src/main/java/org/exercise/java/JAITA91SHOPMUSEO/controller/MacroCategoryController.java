@@ -31,15 +31,6 @@ public class MacroCategoryController {
         this.macroCategoryService = macroCategoryService;
     }
 
-    @GetMapping
-    public String macroCategories(Model model) {
-        model.addAttribute(
-                "macroCategories",
-                macroCategoryRepository.findAll()
-        );
-        return "admin/macro-categories/index";
-    }
-
     @GetMapping("/edit/{id}")
     public String editMacroCategory(Model model, @PathVariable Integer id) {
         model.addAttribute("macroCategory", macroCategoryService.getById(id));
