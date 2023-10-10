@@ -16,7 +16,17 @@ public class Order {
     private int quantity;
 
     @ManyToOne
+    private User buyer;
+    @ManyToOne
     private Product product;
+
+    public User getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(User buyer) {
+        this.buyer = buyer;
+    }
 
     public Product getProduct() {
         return product;
@@ -50,4 +60,5 @@ public class Order {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 }

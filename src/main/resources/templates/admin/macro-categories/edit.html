@@ -10,11 +10,11 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar(area='categories')"></nav>
 <div class="container text-center">
-    <h1 class="mb-4">Modifica Categoria</h1>
-    <form th:action="@{/admin/categories/edit/{id}(id=${category.id})}"
+    <h1 class="mb-4">Modifica Macro Categoria</h1>
+    <form th:action="@{/admin/macro-categories/edit/{id}(id=${macroCategory.id})}"
           id="categoria-edit"
           method="POST"
-          th:object="${category}"
+          th:object="${macroCategory}"
           class="container-form"
     >
         <div class="mb-3">
@@ -25,17 +25,6 @@
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione</label>
             <input class="form-control" id="description" type="text" th:field="*{description}">
-        </div>
-
-        <div class="mb-3">
-            <h4>Macro Categoria</h4>
-            <div class="form-check" th:each="cat : ${macroCategories}">
-                <label class="form-check-label" th:for="|category_${cat.id}|">
-                    <input class="form-check-input" type="radio" th:value="${cat.id}" th:id="|category_${cat.id}|"
-                           th:field="*{macroCategory}">
-                    [[${cat.name}]]
-                </label>
-            </div>
         </div>
 
         <div class="d-flex justify-content-end">

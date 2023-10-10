@@ -2,15 +2,13 @@ package org.exercise.java.JAITA91SHOPMUSEO.controller;
 
 
 import jakarta.validation.Valid;
-import org.exercise.java.JAITA91SHOPMUSEO.model.Assortment;
-import org.exercise.java.JAITA91SHOPMUSEO.model.Order;
-import org.exercise.java.JAITA91SHOPMUSEO.model.Product;
-import org.exercise.java.JAITA91SHOPMUSEO.repository.AssortmentRepository;
-import org.exercise.java.JAITA91SHOPMUSEO.repository.CategoryRepository;
-import org.exercise.java.JAITA91SHOPMUSEO.repository.OrderRepository;
-import org.exercise.java.JAITA91SHOPMUSEO.repository.ProductRepository;
+import org.exercise.java.JAITA91SHOPMUSEO.model.*;
+import org.exercise.java.JAITA91SHOPMUSEO.repository.*;
+import org.exercise.java.JAITA91SHOPMUSEO.security.DatabaseUserDetails;
 import org.exercise.java.JAITA91SHOPMUSEO.service.ProductService;
+import org.exercise.java.JAITA91SHOPMUSEO.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +27,9 @@ public class ProductController {
     private final CategoryRepository categoryRepository;
     private final OrderRepository orderRepository;
     private final AssortmentRepository assortmentRepository;
+    private final ReviewRepository reviewRepository;
+    private final UserService userService;
+    private final UserRepository userRepository;
 
     @Autowired
     public ProductController(
@@ -36,13 +37,18 @@ public class ProductController {
             ProductRepository productRepository,
             CategoryRepository categoryRepository,
             OrderRepository orderRepository,
-            AssortmentRepository assortmentRepository
+            AssortmentRepository assortmentRepository,
+            ReviewRepository reviewRepository, UserService userService,
+            UserRepository userRepository
     ) {
         this.productService = productService;
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
         this.orderRepository = orderRepository;
         this.assortmentRepository = assortmentRepository;
+        this.reviewRepository = reviewRepository;
+        this.userService = userService;
+        this.userRepository = userRepository;
     }
 
 
@@ -64,6 +70,7 @@ public class ProductController {
     public String detail(@PathVariable Integer id, Model model) {
         model.addAttribute("product", productService.getById(id));
         model.addAttribute("order", new Order());
+        model.addAttribute("review", new Review());
 
         return "products/detail";
     }
@@ -100,22 +107,53 @@ public class ProductController {
     }
 
     @PostMapping("/products/buy/{id}")
-    public String buy(
-            @PathVariable Integer id, @ModelAttribute Order order
+    public String buy(Model model,
+                      @PathVariable Integer id, @ModelAttribute Order order, Authentication authentication
     ) {
+        Integer buyerId = ((DatabaseUserDetails) authentication.getPrincipal()).getId();
+        User buyer = userService.findById(buyerId);
+        Product product = productService.getById(id);
+
         order.setProduct(productService.getById(id));
         order.setDate(LocalDate.now());
         order.setId(null);
+        order.setBuyer(buyer);
         orderRepository.save(order);
 
-        Product product = productService.getById(id);
-        product.getOrders().add(order);
+        buyer.getOrders().add(order);
+        userRepository.save(buyer);
 
+        product.getOrders().add(order);
         productRepository.save(product);
-        return "redirect:/products/" + id;
+
+        model.addAttribute("order", order);
+        model.addAttribute("product", product);
+
+        return "/products/purchased";
     }
 
 
+    @PostMapping("/products/{id}/review/create")
+    public String createReview(
+            @PathVariable Integer id, @ModelAttribute Review review, Authentication authentication
+    ) {
+        Integer buyerId = ((DatabaseUserDetails) authentication.getPrincipal()).getId();
+        User reviewer = userService.findById(buyerId);
+        Product product = productService.getById(id);
+
+        review.setId(null);
+        review.setProduct(productService.getById(id));
+        review.setReviewer(reviewer);
+        reviewRepository.save(review);
+
+        reviewer.getReviews().add(review);
+        userRepository.save(reviewer);
+
+        product.getReviews().add(review);
+        productRepository.save(product);
+
+        return "redirect:/products/" + id;
+    }
 
 
     @GetMapping("/admin/products/restock/{id}")
@@ -149,11 +187,8 @@ public class ProductController {
         productRepository.save(product);
 
 
-
         return "redirect:/admin";
     }
-
-
 
 
     //---------Edit------------------
@@ -182,9 +217,6 @@ public class ProductController {
 
     @PostMapping("/admin/products/delete/{id}")
     public String delete(@PathVariable Integer id) {
-        Product product = productService.getById(id);
-        product.getCategories().clear();
-        productRepository.save(product);
         productRepository.deleteById(id);
 
         return "redirect:/admin";

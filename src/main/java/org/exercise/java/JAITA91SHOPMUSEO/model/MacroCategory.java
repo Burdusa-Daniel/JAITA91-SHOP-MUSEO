@@ -1,31 +1,27 @@
 package org.exercise.java.JAITA91SHOPMUSEO.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 
 @Entity
-@Table(name = "categories")
-public class Category {
+public class MacroCategory {
+
+    //ATTRIBUTI
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotBlank
     private String name;
+    @NotBlank
     private String description;
-    @ManyToOne
-    private MacroCategory macroCategory;
+    @OneToMany(mappedBy = "macroCategory", cascade = CascadeType.REMOVE)
+    private List<Category> categories;
 
-    @ManyToMany(mappedBy = "categories")
-    private List<Product> products;
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
+    //GETTER E SETTER
 
     public Integer getId() {
         return id;
@@ -51,12 +47,11 @@ public class Category {
         this.description = description;
     }
 
-    public MacroCategory getMacroCategory() {
-        return macroCategory;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setMacroCategory(MacroCategory macroCategory) {
-        this.macroCategory = macroCategory;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
-
 }
