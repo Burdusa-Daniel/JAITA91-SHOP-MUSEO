@@ -1,10 +1,10 @@
-INSERT INTO products (description, name, price, url) VALUES('Una tazzina', 'Tazzina', 10.89, 'https://millemotivi.com/wp-content/uploads/2019/03/tazzina-caffe-bianca.jpg');
-INSERT INTO products (description, name, price, url) VALUES('Una tazzina', 'Tazzina', 10.89, 'https://millemotivi.com/wp-content/uploads/2019/03/tazzina-caffe-bianca.jpg');
-INSERT INTO products (description, name, price, url) VALUES('Una tazzina', 'Tazzina', 10.89, 'https://millemotivi.com/wp-content/uploads/2019/03/tazzina-caffe-bianca.jpg');
-INSERT INTO products (description, name, price, url) VALUES('Una tazzina', 'Tazzina', 10.89, 'https://millemotivi.com/wp-content/uploads/2019/03/tazzina-caffe-bianca.jpg');
-INSERT INTO products (description, name, price, url) VALUES('Una tazzina', 'Tazzina', 10.89, 'https://millemotivi.com/wp-content/uploads/2019/03/tazzina-caffe-bianca.jpg');
-INSERT INTO products (description, name, price, url) VALUES('Una tazzina', 'Tazzina', 10.89, 'https://millemotivi.com/wp-content/uploads/2019/03/tazzina-caffe-bianca.jpg');
-INSERT INTO products (description, name, price, url) VALUES('Una tazzina', 'Tazzina', 10.89, 'https://millemotivi.com/wp-content/uploads/2019/03/tazzina-caffe-bianca.jpg');
+INSERT INTO products (description, name, price, url) VALUES('Una tazzina molto elaborata da anni di arduo lavoro', 'Tazzina', 10.89, 'https://millemotivi.com/wp-content/uploads/2019/03/tazzina-caffe-bianca.jpg');
+INSERT INTO products (description, name, price, url) VALUES('Una tazzina molto elaborata da anni di arduo lavoro', 'Tazzina', 10.89, 'https://millemotivi.com/wp-content/uploads/2019/03/tazzina-caffe-bianca.jpg');
+INSERT INTO products (description, name, price, url) VALUES('Una tazzina molto elaborata da anni di arduo lavoro', 'Tazzina', 10.89, 'https://millemotivi.com/wp-content/uploads/2019/03/tazzina-caffe-bianca.jpg');
+INSERT INTO products (description, name, price, url) VALUES('Una tazzina molto elaborata da anni di arduo lavoro', 'Tazzina', 10.89, 'https://millemotivi.com/wp-content/uploads/2019/03/tazzina-caffe-bianca.jpg');
+INSERT INTO products (description, name, price, url) VALUES('Una tazzina molto elaborata da anni di arduo lavoro', 'Tazzina', 10.89, 'https://millemotivi.com/wp-content/uploads/2019/03/tazzina-caffe-bianca.jpg');
+INSERT INTO products (description, name, price, url) VALUES('Una tazzina molto elaborata da anni di arduo lavoro', 'Tazzina', 10.89, 'https://millemotivi.com/wp-content/uploads/2019/03/tazzina-caffe-bianca.jpg');
+INSERT INTO products (description, name, price, url) VALUES('Una tazzina molto elaborata da anni di arduo lavoro', 'Tazzina', 10.89, 'https://millemotivi.com/wp-content/uploads/2019/03/tazzina-caffe-bianca.jpg');
 
 INSERT INTO categories (description, name) VALUES ('Tazzine', 'Tazzina');
 INSERT INTO categories (description, name) VALUES ('Libri', 'Libro');
