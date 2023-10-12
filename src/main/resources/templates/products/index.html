@@ -44,6 +44,7 @@
     <title> Prodotti </title>
 </head>
 <body>
+<nav th:replace="fragments/navbar :: navbar(area='catalog')"></nav>
 <!-- home -->
 <section>
     <div class="bg-image W-auto py-auto"
@@ -53,12 +54,12 @@
             <div class="container h-100">
                 <div class="justify-content-center h-100">
                     <div class="text-white pt-5 pb-0 d-flex justify-content-center align-items-center" id="navbarNav">
-                        <nav class="nav">
+                        <!--<nav class="nav">
                             <a class="nav-link active text-white" aria-current="page" href="#">-Home-</a>
                             <a class="nav-link text-white" href="#">-Chi Siamo-</a>
                             <a class="nav-link text-white" href="#">-Blog-</a>
                             <a class="nav-link text-white" href="#">-Contact-</a>
-                        </nav>
+                        </nav>-->
                     </div>
                     <div class="d-flex justify-content-center align-items-center h-50 mt-3">
 
@@ -165,7 +166,7 @@
 
 <!-- footer-->
     <section>
-        <div class="container" style="background-color: #ffffff;>
+        <div class="container" style="background-color: #ffffff;">
             <div class="row">
                 <div class="col-3">
 
