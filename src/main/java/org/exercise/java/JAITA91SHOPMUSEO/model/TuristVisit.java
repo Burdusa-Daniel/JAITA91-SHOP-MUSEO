@@ -23,6 +23,8 @@ public class TuristVisit {
 
     private BigDecimal price;
 
+    private String url;
+
     //GETTER E SETTER
 
     public Integer getId() {
@@ -63,5 +65,13 @@ public class TuristVisit {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

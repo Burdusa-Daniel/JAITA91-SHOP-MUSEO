@@ -20,7 +20,9 @@
                     <h1 th:text="${product.name}"></h1>
                     <div class="text-warning d-flex">
                         <div th:with="leftover=${5 - product.averageRating}">
-                            <i th:if="${product.averageRating > 0}" th:each="i : ${#numbers.sequence(0, product.averageRating - 1)}" class="fa fa-star fs-3"></i>
+                            <i th:if="${product.averageRating > 0}"
+                               th:each="i : ${#numbers.sequence(0, product.averageRating - 1)}"
+                               class="fa fa-star fs-3"></i>
                             <i th:each="i : ${#numbers.sequence(0, leftover - 1)}" class="fa fa-star-o fs-3"></i>
                         </div>
                         <h4 th:text="|(${product.reviews.size()})|"></h4>
@@ -33,7 +35,8 @@
                                 th:object="${order}"
                                 th:action="@{/products/buy/{id}(id=${product.id})}"
                         >
-                            <input class="form-control" type="number" th:field="*{quantity}" style="width: 80px;" min="1" step="1" value="1"/>
+                            <input class="form-control" type="number" th:field="*{quantity}" style="width: 80px;"
+                                   min="1" step="1" value="1"/>
                             <button class="btn btn-primary" type="submit" style="width: 100%;">COMPRA</button>
                         </form>
                     </div>
@@ -52,12 +55,14 @@
                     <h4 th:text="${rev.name}"></h4>
                     <div class="text-warning d-flex">
                         <div th:with="leftover=${5 - rev.stars}">
-                            <i th:if="${rev.stars > 0}" th:each="i : ${#numbers.sequence(0, rev.stars - 1)}" class="fa fa-star fs-3"></i>
-                            <i th:if="${rev.stars != 5}" th:each="i : ${#numbers.sequence(0, leftover - 1)}" class="fa fa-star-o fs-3"></i>
+                            <i th:if="${rev.stars > 0}" th:each="i : ${#numbers.sequence(0, rev.stars - 1)}"
+                               class="fa fa-star fs-3"></i>
+                            <i th:if="${rev.stars != 5}" th:each="i : ${#numbers.sequence(0, leftover - 1)}"
+                               class="fa fa-star-o fs-3"></i>
                         </div>
                     </div>
                     <h1 th:text="${rev.title}"></h1>
-                    <p th:text="${rev.description}"> </p>
+                    <p th:text="${rev.description}"></p>
                 </div>
             </div>
         </div>
@@ -71,7 +76,7 @@
                     th:object="${review}"
             >
                 <label
-                    class="form-label">Titolo Recensione
+                        class="form-label">Titolo Recensione
                     <input required class="form-control" th:field="*{title}" type="text"/>
                 </label>
 
@@ -88,6 +93,8 @@
         </div>
     </div>
 </div>
+
+
 </body>
 
 </html>

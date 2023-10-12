@@ -32,7 +32,7 @@ INSERT INTO users (id, first_name, last_name, registration_date, username, passw
 INSERT INTO users_roles(user_id, roles_id) VALUES(1, 1);
 INSERT INTO users_roles(user_id, roles_id) VALUES(2, 2);
 
-INSERT INTO turistvisit(name, description, date, price) VALUES ("visita al museo", "visita al museo", "2023-11-10", 49.99);
+INSERT INTO turistvisit(name, description, date, price, url) VALUES ("visita al museo", "visita al museo", "2023-11-10", 49.99, "https://images.pexels.com/photos/2570059/pexels-photo-2570059.jpeg?auto=compress&cs=tinysrgb&w=1600");
 
 
 
