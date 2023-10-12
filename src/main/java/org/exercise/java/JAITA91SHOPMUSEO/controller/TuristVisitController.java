@@ -74,14 +74,14 @@ public class TuristVisitController {
             BindingResult bindingResult
     ) {
         turistVisitRepository.save(turistVisitForm);
-        return "redirect:/admin/visit/index";
+        return "redirect:/visita-guidata/admin/list";
     }
 
     @PostMapping("/admin/delete/{id}")
     public String delete(@PathVariable Integer id) {
         turistVisitRepository.deleteById(id);
 
-        return "redirect:/admin/visit/index";
+        return "redirect:/visita-guidata/admin/list";
     }
 
 
