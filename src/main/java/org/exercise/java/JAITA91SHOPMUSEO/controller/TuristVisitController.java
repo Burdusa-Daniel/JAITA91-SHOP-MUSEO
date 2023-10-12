@@ -45,7 +45,7 @@ public class TuristVisitController {
     public String doEdit(Model model, @PathVariable Integer id, @Valid @ModelAttribute("turistVisit")
     TuristVisit turistVisitForm) {
         turistVisitRepository.save(turistVisitForm);
-        return "redirect:admin/list";
+        return "redirect:/visita-guidata/admin/list";
     }
 
     @GetMapping("/detail/{id}")
@@ -63,7 +63,7 @@ public class TuristVisitController {
 
     @GetMapping("/create")
     public String createVisit(Model model) {
-        model.addAttribute("turistvist", new TuristVisit());
+        model.addAttribute("turistVisit", new TuristVisit());
         return "admin/visit/create";
     }
 
