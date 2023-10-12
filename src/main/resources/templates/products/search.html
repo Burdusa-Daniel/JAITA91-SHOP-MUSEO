@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        .overlay {
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 100%;
+          width: 100%;
+          opacity: 0;
+          transition: .5s ease;
+          background-color: #7D8CC4;
+        }
+
+        .container2:hover .overlay {
+          opacity: 0.8;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .container2:hover .imghover {
+          opacity: 0.3;
+        }
+
+        .imghover {
+            opacity: 1;
+        }
+        .f-page{
+            font-family: 'Poppins', sans-serif;
+        }
+
+    </style>
+    <title> Prodotti </title>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar(area='catalog')"></nav>
+<!-- home -->
+<section>
+    <div class="bg-image W-auto py-auto"
+         style="background-image: url('https://abbonamentomusei.it/wp-content/uploads/2022/09/Galleria-Archeologica.jpg?x20918');
+            height: 50vh; background-position: center;" >
+        <div class="mask h-100 " style="background-color: rgba(0, 0, 0, 0.4)">
+            <div class="container h-100">
+                <div class="justify-content-center h-100">
+                    <div class="text-white pt-5 pb-0 d-flex justify-content-center align-items-center" id="navbarNav">
+                        <!--<nav class="nav">
+                            <a class="nav-link active text-white" aria-current="page" href="#">-Home-</a>
+                            <a class="nav-link text-white" href="#">-Chi Siamo-</a>
+                            <a class="nav-link text-white" href="#">-Blog-</a>
+                            <a class="nav-link text-white" href="#">-Contact-</a>
+                        </nav>-->
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center h-50 mt-3">
+
+                        <div class="text-white lh-1 text-center">
+                            <p class="mb-0" style="font-size:30px; font-weight: 300;">-Welcome to the Best Museum-</p>
+                            <h1 class="mt-0" style="font-size:80px; font-weight: 500">Discover the World</h1>
+                            <p>National Museum</p>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button type="button" class="btn btn-outline-light">
+                            <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" th:href="@{/visita-guidata}">scopri le nostre visite guidate</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Vantaggi shop-->
+<section class="mb-4" style="background-color: #7D8CC4; ">
+<div class="container text-white" >
+    <div class="row" >
+        <div class="border-end border-2 col-3 my-3 d-flex align-items-center justify-content-center">
+            <div class="text-center">
+                <i class="fa-solid fa-truck fs-5"></i><br>
+                <span>"Spedizione Gratuità"</span>
+            </div>
+        </div>
+        <div class="border-end border-2 col-3 my-3 d-flex align-items-center justify-content-center">
+            <div class="text-center">
+                <i class="fa-solid fa-headset fs-5"></i>
+                <br>
+                <span>"Servizio al Cliente"</span>
+            </div>
+        </div>
+        <div class="border-end border-2 col-3 my-3 d-flex align-items-center justify-content-center">
+            <div class="text-center">
+                <i class="fa-solid fa-hand-holding-dollar fs-5"></i>
+                <br>
+                <span>"Contenti & Rimborsati"</span>
+            </div>
+        </div>
+        <div class="border-end border-2 col-3 my-3 d-flex align-items-center justify-content-center">
+            <div class="text-center">
+                <i class="fa-regular fa-thumbs-up fs-5"></i>
+                <br>
+                <span>"Pagamenti Sicuri"</span>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<!-- description museum-->
+<section>
+    <div>
+
+    </div>
+</section>
+<!-- shop section-->
+<div class="text-center">
+    <h1 class="f-page">I nostri prodotti</h1>
+    <hr class="mb-0 pb-0">
+    <div class="row">
+        <div class="col-12 d-flex" style="background-color: #ffffff;">
+            <div class="container ">
+                <!-- box cards -->
+            <div class="row g-0 mb-5">
+                <!-- card -->
+                <div th:each="product : ${products}" class="col-3">
+                    <div class="card mt-4 container2 shadow overflow-y-hidden " style="width: 18rem; height: 18rem;">
+                        <!-- background img card -->
+                        <div>
+                            <img th:src="${product.url}" class="img-fluid imghover border-opacity-0" alt="Foto Ricetta">
+                        </div>
+                        <!-- body card -->
+                        <div class="card-img-overlay border-opacity-0 overlay d-flex flex-column align-content-between">
+                            <div class="d-flex justify-content-end" style="width: 100%; height: 100%;">
+                                <i class="fa-solid fa-slash text-white fs-5"></i>
+                            </div>
+                            <div style="width: 100%; height: 100%;">
+                                <div  class="btn btn-light rounded-pill shadow-sm" >
+                                  <a class="text-black link-offset-2 link-underline link-underline-opacity-0 px-2" th:href="@{/products/{id}(id=${product.id})}">Buy Now...</a>
+                                </div>
+                            </div>
+                            <div class="text-start text-white" style="width: 100%; height: 100%;">
+                                <p class="card-title fw-bold fs-5 pb-0 mb-0 " th:text="|${product.name} - ${product.price}€| "></p>
+                                <p class="card-text fst-italic fs-6 mt-0 pt-0" th:text="${product.description}"></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+<!-- footer-->
+    <section>
+        <div class="container" style="background-color: #ffffff;">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+</html>

@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import org.exercise.java.JAITA91SHOPMUSEO.model.*;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.*;
 import org.exercise.java.JAITA91SHOPMUSEO.security.DatabaseUserDetails;
+import org.exercise.java.JAITA91SHOPMUSEO.service.CategoryService;
 import org.exercise.java.JAITA91SHOPMUSEO.service.ProductService;
 import org.exercise.java.JAITA91SHOPMUSEO.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ public class ProductController {
     private final ReviewRepository reviewRepository;
     private final UserService userService;
     private final UserRepository userRepository;
+    private final MacroCategoryRepository macroCategoryRepository;
+    private final CategoryService categoryService;
 
     @Autowired
     public ProductController(
@@ -38,8 +41,11 @@ public class ProductController {
             CategoryRepository categoryRepository,
             OrderRepository orderRepository,
             AssortmentRepository assortmentRepository,
-            ReviewRepository reviewRepository, UserService userService,
-            UserRepository userRepository
+            ReviewRepository reviewRepository,
+            UserService userService,
+            UserRepository userRepository,
+            MacroCategoryRepository macroCategoryRepository,
+            CategoryService categoryService
     ) {
         this.productService = productService;
         this.productRepository = productRepository;
@@ -49,12 +55,42 @@ public class ProductController {
         this.reviewRepository = reviewRepository;
         this.userService = userService;
         this.userRepository = userRepository;
+        this.macroCategoryRepository = macroCategoryRepository;
+        this.categoryService = categoryService;
     }
 
 
     @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("products", productRepository.findAll());
+    public String index(
+            Model model,
+            @RequestParam(value = "q", required = false) String query,
+            @RequestParam(value = "category", required = false) Integer categoryId
+    ) {
+        if (query != null) {
+            model.addAttribute("products",
+                               productRepository.findAllByNameContaining(query)
+            );
+        } else {
+            if (categoryId != null) {
+                model.addAttribute(
+                        "products",
+                        categoryService.getById(categoryId)
+                                       .getProducts()
+                );
+            } else {
+                model.addAttribute("products", productRepository.findAll());
+            }
+        }
+
+        if (query == null && categoryId == null) {
+            model.addAttribute("topProducts", productService.getTopProducts());
+            model.addAttribute("mostVoted", productService.getMostVoted());
+        }
+
+        model.addAttribute(
+                "macroCategories",
+                macroCategoryRepository.findAll()
+        );
         return "products/index";
     }
 
@@ -107,10 +143,14 @@ public class ProductController {
     }
 
     @PostMapping("/products/buy/{id}")
-    public String buy(Model model,
-                      @PathVariable Integer id, @ModelAttribute Order order, Authentication authentication
+    public String buy(
+            Model model,
+            @PathVariable Integer id,
+            @ModelAttribute Order order,
+            Authentication authentication
     ) {
-        Integer buyerId = ((DatabaseUserDetails) authentication.getPrincipal()).getId();
+        Integer buyerId =
+                ((DatabaseUserDetails) authentication.getPrincipal()).getId();
         User buyer = userService.findById(buyerId);
         Product product = productService.getById(id);
 
@@ -135,9 +175,12 @@ public class ProductController {
 
     @PostMapping("/products/{id}/review/create")
     public String createReview(
-            @PathVariable Integer id, @ModelAttribute Review review, Authentication authentication
+            @PathVariable Integer id,
+            @ModelAttribute Review review,
+            Authentication authentication
     ) {
-        Integer buyerId = ((DatabaseUserDetails) authentication.getPrincipal()).getId();
+        Integer buyerId =
+                ((DatabaseUserDetails) authentication.getPrincipal()).getId();
         User reviewer = userService.findById(buyerId);
         Product product = productService.getById(id);
 

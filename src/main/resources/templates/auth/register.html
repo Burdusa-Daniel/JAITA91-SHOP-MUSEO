@@ -8,9 +8,11 @@
     <title>Registrati</title>
 </head>
 <body>
+<nav th:replace="fragments/navbar :: navbar(area='catalog')"></nav>
 <div class="container">
     <div class="row">
         <div class="col-6 mx-auto">
+            <h1>Registrati</h1>
             <form
                     method="POST"
                     th:action="@{/register}"
