@@ -33,6 +33,9 @@ INSERT INTO users_roles(user_id, roles_id) VALUES(1, 1);
 INSERT INTO users_roles(user_id, roles_id) VALUES(2, 2);
 
 INSERT INTO turistvisit(name, description, date, price, url) VALUES ("visita al museo", "visita al museo", "2023-11-10", 49.99, "https://images.pexels.com/photos/2570059/pexels-photo-2570059.jpeg?auto=compress&cs=tinysrgb&w=1600");
+INSERT INTO turistvisit(name, description, date, price, url) VALUES ("visita alla prima sala", "visita approfondita alla prima sala", "2023-11-10", 39.99, "https://images.pexels.com/photos/2570059/pexels-photo-2570059.jpeg?auto=compress&cs=tinysrgb&w=1600");
+INSERT INTO turistvisit(name, description, date, price, url) VALUES ("visita alla seconda sala", "visita approfondita alla seconda sala", "2023-11-10", 39.99, "https://images.pexels.com/photos/2570059/pexels-photo-2570059.jpeg?auto=compress&cs=tinysrgb&w=1600");
+INSERT INTO turistvisit(name, description, date, price, url) VALUES ("visita alla terza sala", "visita approfondita alla terza sala", "2023-11-10", 39.99, "https://images.pexels.com/photos/2570059/pexels-photo-2570059.jpeg?auto=compress&cs=tinysrgb&w=1600");
 
 
 
