@@ -60,19 +60,20 @@
     <title> Prodotti </title>
 </head>
 <body>
+<nav th:replace="fragments/navbar :: navbar(area='catalog')"></nav>
 <!-- home -->
 <section>
     <div class="bg-image W-auto py-auto"
          style="background-image: url('https://abbonamentomusei.it/wp-content/uploads/2022/09/Galleria-Archeologica.jpg?x20918');
-            height: 50vh; background-position: center;">
+            height: 50vh; background-position: center;" >
         <div class="mask h-100 " style="background-color: rgba(0, 0, 0, 0.4)">
             <div class="container h-100">
                 <div class="justify-content-center h-100">
                     <div class="text-white pt-5 pb-0 d-flex justify-content-center align-items-center" id="navbarNav">
                         <nav class="nav">
                             <a class="nav-link active text-white" aria-current="page" href="#">-Home-</a>
-                            <a class="nav-link text-white" href="#">-chi siamo-</a>
-                            <a class="nav-link text-white" href="#">-shop-</a>
+                            <a class="nav-link text-white" href="#">-Chi Siamo-</a>
+                            <a class="nav-link text-white" href="#">-Blog-</a>
                             <a class="nav-link text-white" href="#">-Contact-</a>
                         </nav>
                     </div>
@@ -85,7 +86,9 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
-                        <button type="button" class="btn btn-outline-light">Scopri</button>
+                        <button type="button" class="btn btn-outline-light">
+                            <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" th:href="@{/visita-guidata}">scopri le nostre visite guidate</a>
+                        </button>
                     </div>
                 </div>
             </div>
