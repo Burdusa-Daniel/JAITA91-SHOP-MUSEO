@@ -56,6 +56,15 @@
           color:white;
         }
 
+
+
+
+
+
+
+
+
+
     </style>
     <title> Prodotti </title>
 </head>
@@ -65,16 +74,16 @@
 <section>
     <div class="bg-image W-auto py-auto"
          style="background-image: url('https://abbonamentomusei.it/wp-content/uploads/2022/09/Galleria-Archeologica.jpg?x20918');
-            height: 50vh; background-position: center;" >
+            height: 50vh; background-position: center;">
         <div class="mask h-100 " style="background-color: rgba(0, 0, 0, 0.4)">
             <div class="container h-100">
                 <div class="justify-content-center h-100">
                     <div class="text-white pt-5 pb-0 d-flex justify-content-center align-items-center" id="navbarNav">
                         <nav class="nav">
-                            <a class="nav-link active text-white" aria-current="page" href="#">-Home-</a>
-                            <a class="nav-link text-white" href="#">-Chi Siamo-</a>
-                            <a class="nav-link text-white" href="#">-Blog-</a>
-                            <a class="nav-link text-white" href="#">-Contact-</a>
+                            <a class="nav-link active text-white" aria-current="page" th:href="@{/}">-Home-</a>
+                            <a class="nav-link text-white" th:href="@{/shop}">-Shop-</a>
+                            <a class="nav-link text-white" th:href="@{/visita-guidata}">-Tour-</a>
+                            <a class="nav-link text-white" th:href="@{/contact}">-Contact-</a>
                         </nav>
                     </div>
                     <div class="d-flex justify-content-center align-items-center h-50 mt-3">
@@ -87,7 +96,8 @@
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
                         <button type="button" class="btn btn-outline-light">
-                            <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" th:href="@{/visita-guidata}">scopri le nostre visite guidate</a>
+                            <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                               th:href="@{/visita-guidata}">scopri le nostre visite guidate</a>
                         </button>
                     </div>
                 </div>
@@ -149,7 +159,8 @@
                         and workshops that explore Black identity, agency and freedom through art, creative
                         works and activism.</p>
                     <div class="w-25 align-self-end btn btn-light">
-                        <a class="link-underline link-underline-opacity-0" style="color:#7D8CC4;" href="">Join ->></a>
+                        <a class="link-underline link-underline-opacity-0" style="color:#7D8CC4;"
+                           th:href="@{/visita-guidata}">Join ->></a>
                     </div>
                 </div>
             </div>
@@ -209,7 +220,7 @@
         <div class="col-4 bg-image"
              style="background-image: url('https://images.pexels.com/photos/4576917/pexels-photo-4576917.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
             background-position-y: -270px;">
-            <a href="" class="link-offset-2 link-underline link-underline-opacity-0">
+            <a th:href="@{/visita-guidata}" class="link-offset-2 link-underline link-underline-opacity-0">
                 <div class="d-flex justify-content-center align-items-center h-100">
                     <div class="text-center text-white">
                         <h3 class="f-page" style="font-size: 5vh">Tour</h3>
@@ -220,7 +231,7 @@
         <div class="col-4 bg-image"
              style="background-image: url('https://images.pexels.com/photos/18483756/pexels-photo-18483756/free-photo-of-scuro-vintage-shopping-negozio.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
             background-position-y: -270px;">
-            <a href="" class="link-offset-2 link-underline link-underline-opacity-0">
+            <a th:href="@{/shop}" class="link-offset-2 link-underline link-underline-opacity-0">
                 <div class="d-flex justify-content-center align-items-center h-100">
                     <div class="text-center text-white">
                         <h3 class="f-page" style="font-size: 5vh">Shop</h3>
@@ -231,7 +242,7 @@
         <div class="col-4 bg-image"
              style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/8b/British_Museum_Exterior.jpg');
             background-position-y: 0px; background-size: cover;">
-            <a href="" class="link-offset-2 link-underline link-underline-opacity-0">
+            <a th:href="@{/contact}" class="link-offset-2 link-underline link-underline-opacity-0">
                 <div class="d-flex justify-content-center align-items-center h-100">
                     <div class="text-center text-white">
                         <h3 class="f-page" style="font-size: 5vh">Contact</h3>

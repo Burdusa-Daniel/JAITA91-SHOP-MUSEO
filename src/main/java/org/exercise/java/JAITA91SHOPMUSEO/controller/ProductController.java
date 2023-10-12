@@ -222,4 +222,19 @@ public class ProductController {
         return "redirect:/admin";
     }
 
+    //----------Pagine Aggiunte---------------
+
+    @GetMapping("/shop")
+    public String shop(Model model) {
+        model.addAttribute("products", productRepository.findAll());
+        return "products/shop";
+    }
+
+    @GetMapping("/contact")
+    public String contact(Model model) {
+        model.addAttribute("products", productRepository.findAll());
+        return "products/shop";
+    }
+
+
 }
