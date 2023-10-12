@@ -11,10 +11,10 @@
 <nav th:replace="fragments/navbar :: navbar(area='catalog')"></nav>
 <div class="container text-center">
     <h1 class="mb-4">Modifica il Prodotto</h1>
-    <form th:action="@{visita-guidata/edit/{id}(id=${turistVisit.id})}"
+    <form th:action="@{/visita-guidata/admin/edit/{id}(id=${turistvisit.id})}"
           id="turistVisit-edit"
           method="POST"
-          th:object="${turistVisit}"
+          th:object="${turistvisit}"
     >
         <div class="mb-3">
             <label for="name" class="form-label">Nome</label>
