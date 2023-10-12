@@ -42,6 +42,13 @@ public class SecurityConfiguration {
             .hasAnyAuthority("ADMIN", "USER")
             .requestMatchers("/products/*/review/create")
             .hasAnyAuthority("ADMIN", "USER")
+            .requestMatchers(
+                    "/visita-guidata/admin",
+                    "/visita-guidata/admin/**"
+            )
+            .hasAuthority("ADMIN")
+            .requestMatchers("/visita-guidata/detail/*")
+            .hasAnyAuthority("ADMIN", "USER")
             .requestMatchers("/**")
             .permitAll()
             .and()

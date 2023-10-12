@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,6 +28,15 @@ public class ProductService {
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
+    }
+
+    public List<Product> getTopProducts() {
+        return productRepository.findAll().stream().sorted((a, b) -> b.getNumberOfBuys() - a.getNumberOfBuys()).limit(3).toList();
+    }
+
+    public List<Product> getMostVoted() {
+        return productRepository.findAll().stream().sorted((a, b) -> b.getAverageRating() - a.getAverageRating()).limit(3).toList();
+
     }
 
 }

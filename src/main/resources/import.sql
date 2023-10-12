@@ -4,15 +4,14 @@ INSERT INTO products (description, name, price, url) VALUES('Borsa per la spesa 
 INSERT INTO products (description, name, price, url) VALUES('Smooth, comfortable and light structure.', 'Ballpoint pen', 10.89, 'https://www.museum-shop.it/cdn/shop/products/Ballpoint-pen-plastic-creation-museum-shop-italy.jpg');
 INSERT INTO products (description, name, price, url) VALUES('Set di 5 cartoline', 'Musei Vaticani', 10.89, 'https://static.museivaticani.va/images/CARTOLINE_KIT_1.png');
 
-INSERT INTO categories (description, name) VALUES ('Tazze', 'Tazza');
-INSERT INTO categories (description, name) VALUES ('Libri', 'Libro');
-INSERT INTO categories (description, name) VALUES ('Borse', 'Borsa');
-INSERT INTO categories (description, name) VALUES ('Penne', 'Penna');
-INSERT INTO categories (description, name) VALUES ('Cartoline', 'Cartolina');
+INSERT INTO macro_category (name, description) VALUES ('Cancelleria', 'La nostra cancelleria');
+INSERT INTO macro_category (name, description) VALUES ('Accessori', 'I nostri accessori');
 
-INSERT INTO macro_category (name, description) VALUES ("Abbigliamento", "il nostro abbigliamento");
-INSERT INTO macro_category (name, description) VALUES ("Gadget", "i nostri gadget");
-
+INSERT INTO categories (description, name, macro_category_id) VALUES ('Tazze', 'Tazza', 2);
+INSERT INTO categories (description, name, macro_category_id) VALUES ('Libri', 'Libro', 1);
+INSERT INTO categories (description, name, macro_category_id) VALUES ('Borse', 'Borsa', 2);
+INSERT INTO categories (description, name, macro_category_id) VALUES ('Penne', 'Penna', 1);
+INSERT INTO categories (description, name, macro_category_id) VALUES ('Cartoline', 'Cartolina', 1);
 
 
 INSERT INTO products_categories (categories_id, products_id) VALUES (1,1);
@@ -32,10 +31,10 @@ INSERT INTO users (id, first_name, last_name, registration_date, username, passw
 INSERT INTO users_roles(user_id, roles_id) VALUES(1, 1);
 INSERT INTO users_roles(user_id, roles_id) VALUES(2, 2);
 
-INSERT INTO turistvisit(name, description, date, price, url) VALUES ("visita al museo", "visita al museo", "2023-11-10", 49.99, "https://images.pexels.com/photos/2570059/pexels-photo-2570059.jpeg?auto=compress&cs=tinysrgb&w=1600");
-INSERT INTO turistvisit(name, description, date, price, url) VALUES ("visita alla prima sala", "visita approfondita alla prima sala", "2023-11-10", 39.99, "https://images.pexels.com/photos/2570059/pexels-photo-2570059.jpeg?auto=compress&cs=tinysrgb&w=1600");
-INSERT INTO turistvisit(name, description, date, price, url) VALUES ("visita alla seconda sala", "visita approfondita alla seconda sala", "2023-11-10", 39.99, "https://images.pexels.com/photos/2570059/pexels-photo-2570059.jpeg?auto=compress&cs=tinysrgb&w=1600");
-INSERT INTO turistvisit(name, description, date, price, url) VALUES ("visita alla terza sala", "visita approfondita alla terza sala", "2023-11-10", 39.99, "https://images.pexels.com/photos/2570059/pexels-photo-2570059.jpeg?auto=compress&cs=tinysrgb&w=1600");
+INSERT INTO turistvisit(name, description, date, price, url) VALUES ('visita al museo', 'visita al museo', '2023-11-10', 49.99, 'https://images.pexels.com/photos/2570059/pexels-photo-2570059.jpeg?auto=compress&cs=tinysrgb&w=1600');
+INSERT INTO turistvisit(name, description, date, price, url) VALUES ('visita alla prima sala', 'visita approfondita alla prima sala', '2023-11-10', 39.99, 'https://images.pexels.com/photos/2570059/pexels-photo-2570059.jpeg?auto=compress&cs=tinysrgb&w=1600');
+INSERT INTO turistvisit(name, description, date, price, url) VALUES ('visita alla seconda sala', 'visita approfondita alla seconda sala', '2023-11-10', 39.99, 'https://images.pexels.com/photos/2570059/pexels-photo-2570059.jpeg?auto=compress&cs=tinysrgb&w=1600');
+INSERT INTO turistvisit(name, description, date, price, url) VALUES ('visita alla terza sala', 'visita approfondita alla terza sala', '2023-11-10', 39.99, 'https://images.pexels.com/photos/2570059/pexels-photo-2570059.jpeg?auto=compress&cs=tinysrgb&w=1600');
 
 
 

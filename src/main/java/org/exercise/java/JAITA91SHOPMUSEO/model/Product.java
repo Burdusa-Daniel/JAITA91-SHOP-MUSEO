@@ -70,6 +70,15 @@ public class Product {
         return storageAvailable - fromOrders;
     }
 
+    public Integer getNumberOfBuys() {
+        int fromOrders = 0;
+        for (Order order : orders) {
+            fromOrders += order.getQuantity();
+        }
+
+        return fromOrders;
+    }
+
     public List<Order> getOrders() {
         return orders;
     }
