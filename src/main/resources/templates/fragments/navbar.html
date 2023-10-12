@@ -19,6 +19,14 @@
                     >Catalogo</a>
                 </li>
 
+                <li class="nav-item">
+                    <a
+                            class="nav-link"
+                            th:classappend="${#strings.equals(area,'catalog') ? 'active' : ''}"
+                            th:href="@{/visita-guidata}"
+                    >Visite</a>
+                </li>
+
                 <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
                     <a
                             class="nav-link"
@@ -33,6 +41,14 @@
                             th:classappend="${#strings.equals(area,'categories') ? 'active' : ''}"
                             th:href="@{/admin/categories}"
                     >Categorie</a>
+                </li>
+
+                <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+                    <a
+                            class="nav-link"
+                            th:classappend="${#strings.equals(area,'categories') ? 'active' : ''}"
+                            th:href="@{/visita-guidata/admin/list}"
+                    >Gestione visite</a>
                 </li>
             </ul>
             <div class="w-100 d-flex align-items-center justify-content-end"

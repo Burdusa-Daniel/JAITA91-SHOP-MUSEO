@@ -22,6 +22,12 @@ public class TuristVisitController {
         return "visit/index";
     }
 
+    @GetMapping("admin/list")
+    public String indexAdmin(Model model) {
+        model.addAttribute("turistvisit", turistVisitRepository.findAll());
+        return "admin/visit/index";
+    }
+
 
     @GetMapping("/edit/{id}")
     public String editVisit(Model model, @PathVariable Integer id) {
