@@ -48,6 +48,13 @@ public class TuristVisitController {
         return "visit/detail";
     }
 
+    @GetMapping("/admin/detail/{id}")
+    public String adminDeatilVisit(Model model, @PathVariable Integer id) {
+        model.addAttribute("turistvisit", turistVisitRepository.findById(id));
+        return "admin/visit/detail";
+    }
+
+
     @GetMapping("/create")
     public String createVisit(Model model) {
         model.addAttribute("turistvist", new TuristVisit());
@@ -61,7 +68,14 @@ public class TuristVisitController {
             BindingResult bindingResult
     ) {
         turistVisitRepository.save(turistVisitForm);
-        return "redirect:/admin/index";
+        return "redirect:/admin/visit/index";
+    }
+
+    @PostMapping("/admin/delete/{id}")
+    public String delete(@PathVariable Integer id) {
+        turistVisitRepository.deleteById(id);
+
+        return "redirect:/admin/visit/index";
     }
 
 

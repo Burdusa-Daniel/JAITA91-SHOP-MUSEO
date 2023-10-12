@@ -101,9 +101,9 @@
                     <div th:each="turistVisit : ${turistvisit}" class="col-3">
                         <div class="card mt-4 container2 shadow overflow-y-hidden " style="width: 18rem; height: 18rem;">
                             <!-- background img card -->
-                            <!--<div>
-                                <img th:src="${product.url}" class="img-fluid imghover border-opacity-0" alt="Foto Ricetta">
-                            </div> -->
+                            <div>
+                                <img th:src="${turistVisit.url}" class="img-fluid imghover border-opacity-0" alt="Foto Visita">
+                            </div>
                             <!-- body card -->
                             <div class="card-img-overlay border-opacity-0 overlay d-flex flex-column align-content-between">
                                 <div class="d-flex justify-content-end" style="width: 100%; height: 100%;">
