@@ -45,7 +45,7 @@ public class TuristVisitController {
     public String doEdit(Model model, @PathVariable Integer id, @Valid @ModelAttribute("turistVisit")
     TuristVisit turistVisitForm) {
         turistVisitRepository.save(turistVisitForm);
-        return "redirect:/admin";
+        return "redirect:admin/list";
     }
 
     @GetMapping("/detail/{id}")

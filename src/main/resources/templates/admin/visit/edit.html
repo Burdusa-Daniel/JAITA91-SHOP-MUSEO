@@ -36,9 +36,14 @@
             <input class="form-control" id="imageUrl" type="url" th:field="*{url}">
         </div>
 
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input class="form-control" id="date" type="text" th:field="*{date}">
+        </div>
+
 
         <button type="submit" class="btn btn-primary">Salva</button>
-        <a class="btn btn-secondary" th:href="@{/admin}">Annulla</a>
+        <a class="btn btn-secondary" th:href="@{/visita-guidata/admin/list}">Annulla</a>
     </form>
 </div>
 
