@@ -57,7 +57,7 @@
             </div>
         </div>
     </div>
-    <div class="col-7">
+    <div class="col-7 m-0 p-0">
         <div class= "shadow text-white bg-dark h-100" style="background-color: #fffff ">
             <div class="text-start p-5" style="width: 100%;">
                 <div class="pb-5">
@@ -81,7 +81,7 @@
 
                     <div sec:authorize="isAuthenticated()">
                         <form
-                                class="row d-flex px-2"
+                                class="row m-0 d-flex px-2"
                                 method="post"
                                 th:object="${order}"
                                 th:action="@{/products/buy/{id}(id=${product.id})}"
