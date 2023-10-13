@@ -66,32 +66,43 @@ public class ProductController {
             @RequestParam(value = "q", required = false) String query,
             @RequestParam(value = "category", required = false) Integer categoryId
     ) {
+
+
+        model.addAttribute("topProducts", productService.getTopProducts());
+        model.addAttribute("mostVoted", productService.getMostVoted());
+
+
+        model.addAttribute("macroCategories",
+                           macroCategoryRepository.findAll()
+        );
+        return "products/index";
+    }
+
+    @GetMapping("/shop")
+    public String shop(
+            Model model,
+            @RequestParam(value = "q", required = false) String query,
+            @RequestParam(value = "category", required = false) Integer categoryId
+    ) {
         if (query != null) {
             model.addAttribute("products",
-                    productRepository.findAllByNameContaining(query)
+                               productRepository.findAllByNameContaining(query)
             );
         } else {
             if (categoryId != null) {
-                model.addAttribute(
-                        "products",
-                        categoryService.getById(categoryId)
-                                .getProducts()
+                model.addAttribute("products",
+                                   categoryService.getById(categoryId)
+                                                  .getProducts()
                 );
             } else {
                 model.addAttribute("products", productRepository.findAll());
             }
         }
 
-        if (query == null && categoryId == null) {
-            model.addAttribute("topProducts", productService.getTopProducts());
-            model.addAttribute("mostVoted", productService.getMostVoted());
-        }
-
-        model.addAttribute(
-                "macroCategories",
-                macroCategoryRepository.findAll()
+        model.addAttribute("macroCategories",
+                           macroCategoryRepository.findAll()
         );
-        return "products/index";
+        return "products/shop";
     }
 
     @GetMapping("/admin")
@@ -263,14 +274,6 @@ public class ProductController {
         productRepository.deleteById(id);
 
         return "redirect:/admin";
-    }
-
-    //----------Pagine Aggiunte---------------
-
-    @GetMapping("/shop")
-    public String shop(Model model) {
-        model.addAttribute("products", productRepository.findAll());
-        return "products/shop";
     }
 
 }
