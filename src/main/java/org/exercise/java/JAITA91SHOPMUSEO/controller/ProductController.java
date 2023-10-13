@@ -68,14 +68,14 @@ public class ProductController {
     ) {
         if (query != null) {
             model.addAttribute("products",
-                               productRepository.findAllByNameContaining(query)
+                    productRepository.findAllByNameContaining(query)
             );
         } else {
             if (categoryId != null) {
                 model.addAttribute(
                         "products",
                         categoryService.getById(categoryId)
-                                       .getProducts()
+                                .getProducts()
                 );
             } else {
                 model.addAttribute("products", productRepository.findAll());
@@ -263,6 +263,14 @@ public class ProductController {
         productRepository.deleteById(id);
 
         return "redirect:/admin";
+    }
+
+    //----------Pagine Aggiunte---------------
+
+    @GetMapping("/shop")
+    public String shop(Model model) {
+        model.addAttribute("products", productRepository.findAll());
+        return "products/shop";
     }
 
 }

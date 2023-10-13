@@ -2,46 +2,68 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-          name="viewport">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-          referrerpolicy="no-referrer" rel="stylesheet"/>
-    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet">
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,400&display=swap" rel="stylesheet">
     <style>
         .overlay {
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            width: 100%;
-            opacity: 0;
-            transition: .5s ease;
-            background-color: #7D8CC4;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 100%;
+          width: 100%;
+          opacity: 0;
+          transition: .5s ease;
+          background-color: #7D8CC4;
         }
 
         .container2:hover .overlay {
-            opacity: 0.8;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          opacity: 0.8;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
 
         .container2:hover .imghover {
-            opacity: 0.3;
+          opacity: 0.3;
         }
 
         .imghover {
             opacity: 1;
         }
-
-        .f-page {
+        .f-page{
             font-family: 'Poppins', sans-serif;
         }
+
+        .board{
+            width:500px;
+            height:300px;
+        }
+
+        input[type=text] {
+          width: 100%;
+          box-sizing: border-box;
+          border: none;
+          border-bottom: 2px solid white;
+          background-color: transparent;
+          color:white;
+        }
+
+
+
+
+
+
+
+
+
 
     </style>
     <title> Prodotti </title>
@@ -57,12 +79,12 @@
             <div class="container h-100">
                 <div class="justify-content-center h-100">
                     <div class="text-white pt-5 pb-0 d-flex justify-content-center align-items-center" id="navbarNav">
-                        <!--<nav class="nav">
-                            <a class="nav-link active text-white" aria-current="page" href="#">-Home-</a>
-                            <a class="nav-link text-white" href="#">-Chi Siamo-</a>
-                            <a class="nav-link text-white" href="#">-Blog-</a>
-                            <a class="nav-link text-white" href="#">-Contact-</a>
-                        </nav>-->
+                        <nav class="nav">
+                            <a class="nav-link active text-white" aria-current="page" th:href="@{/}">-Home-</a>
+                            <a class="nav-link text-white" th:href="@{/shop}">-Shop-</a>
+                            <a class="nav-link text-white" th:href="@{/visita-guidata}">-Tour-</a>
+                            <a class="nav-link text-white" th:href="@{/contact}">-Contact-</a>
+                        </nav>
                     </div>
                     <div class="d-flex justify-content-center align-items-center h-50 mt-3">
 
@@ -73,7 +95,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
-                        <button class="btn btn-outline-light" type="button">
+                        <button type="button" class="btn btn-outline-light">
                             <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
                                th:href="@{/visita-guidata}">scopri le nostre visite guidate</a>
                         </button>
@@ -83,6 +105,7 @@
         </div>
     </div>
 </section>
+
 <!-- Vantaggi shop-->
 <section class="mb-4" style="background-color: #7D8CC4; ">
     <div class="container text-white">
@@ -117,164 +140,72 @@
         </div>
     </div>
 </section>
+
 <!-- description museum-->
 <section>
-    <div>
-
+    <div class="container w-100" style="height: 500px;">
+        <div class="h-100 d-flex position-relative">
+            <div class="h-75 z-0 position-absolute top-50 start-0 translate-middle-y overflow-y-hidden"
+                 style="width: 70%; background-color: #7D8CC4;">
+                <div class="position-relative">
+                    <img src="https://www.artribune.com/wp-content/uploads/2020/06/Museo-del-Prado-sala-24.jpg"
+                         class="img-fluid" alt="...">
+                </div>
+            </div>
+            <div class="board bg-dark shadow-lg position-absolute top-50 end-0 translate-middle-y z-1">
+                <div class="text-white p-5 d-flex flex-column">
+                    <p class="text-uppercase fs-3">10 Days of Afrofuturism</p>
+                    <p>Throughout the month, visitors can participate in Afrofuturism-themed programs, activities
+                        and workshops that explore Black identity, agency and freedom through art, creative
+                        works and activism.</p>
+                    <div class="w-25 align-self-end btn btn-light">
+                        <a class="link-underline link-underline-opacity-0" style="color:#7D8CC4;"
+                           th:href="@{/visita-guidata}">Join ->></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
 <!-- shop section-->
-
-<div>
-    <form
-            action="/"
-            method="get">
-        <label>
-            <input class="form-control" name="q" placeholder="Cerca prodotto" type="text">
-        </label>
-
-        <button class="btn btn-primary" type="submit">Cerca</button>
-    </form>
-</div>
-
-<div class="text-center container-fluid">
+<div class="text-center">
+    <h1 class="f-page">I nostri prodotti</h1>
+    <hr class="mb-0 pb-0">
     <div class="row">
-        <div class="col-3">
-
-            <ul th:each="macroCategory : ${macroCategories}">
-                <h4 th:text="${macroCategory.name}"></h4>
-                <li th:each="category : ${macroCategory.categories}">
-                    <a th:href="@{/(category=${category.id})}" th:text="${category.name}"></a>
-                </li>
-            </ul>
+        <div class="col-3 bg-dark">
         </div>
-
-        <div class="col-9">
-            <div th:if="${topProducts != null}">
-                <h1 class="f-page">I più venduti</h1>
-                <hr class="mb-0 pb-0">
-                <div class="row">
-                    <div class="col-12 d-flex" style="background-color: #ffffff;">
-                        <div class="container ">
-                            <!-- box cards -->
-                            <div class="row mb-5">
-                                <!-- card -->
-                                <div class="col-4" th:each="product : ${topProducts}">
-                                    <div class="card mt-4 container2 shadow overflow-y-hidden "
-                                         style="width: 18rem; height: 18rem;">
-                                        <!-- background img card -->
-                                        <div>
-                                            <img alt="Foto Ricetta" class="img-fluid imghover border-opacity-0"
-                                                 th:src="${product.url}">
-                                        </div>
-                                        <!-- body card -->
-                                        <div class="card-img-overlay border-opacity-0 overlay d-flex flex-column align-content-between">
-                                            <div class="d-flex justify-content-end" style="width: 100%; height: 100%;">
-                                                <i class="fa-solid fa-slash text-white fs-5"></i>
-                                            </div>
-                                            <div style="width: 100%; height: 100%;">
-                                                <div class="btn btn-light rounded-pill shadow-sm">
-                                                    <a class="text-black link-offset-2 link-underline link-underline-opacity-0 px-2"
-                                                       th:href="@{/products/{id}(id=${product.id})}">Buy Now...</a>
-                                                </div>
-                                            </div>
-                                            <div class="text-start text-white" style="width: 100%; height: 100%;">
-                                                <p class="card-title fw-bold fs-5 pb-0 mb-0 "
-                                                   th:text="|${product.name} - ${product.price}€| "></p>
-                                                <p class="card-text fst-italic fs-6 mt-0 pt-0"
-                                                   th:text="${product.description}"></p>
-                                            </div>
-                                        </div>
-
+        <div class="col-9 d-flex" style="background-color: #ffffff;">
+            <div class="container ">
+                <!-- box cards -->
+                <div class="row g-0 mb-5">
+                    <!-- card -->
+                    <div th:each="product : ${products}" class="col-3">
+                        <div class="card mt-4 container2 shadow overflow-y-hidden "
+                             style="width: 18rem; height: 18rem;">
+                            <!-- background img card -->
+                            <div>
+                                <img th:src="${product.url}" class="img-fluid imghover border-opacity-0"
+                                     alt="Foto Ricetta">
+                            </div>
+                            <!-- body card -->
+                            <div class="card-img-overlay border-opacity-0 overlay d-flex flex-column align-content-between">
+                                <div class="d-flex justify-content-end" style="width: 100%; height: 100%;">
+                                    <i class="fa-solid fa-slash text-white fs-5"></i>
+                                </div>
+                                <div style="width: 100%; height: 100%;">
+                                    <div class="btn btn-light rounded-pill shadow-sm">
+                                        <a class="text-black link-offset-2 link-underline link-underline-opacity-0 px-2"
+                                           th:href="@{/products/{id}(id=${product.id})}">Buy Now...</a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div th:if="${mostVoted != null}">
-                <h1 class="f-page">I più votati</h1>
-                <hr class="mb-0 pb-0">
-                <div class="row">
-                    <div class="col-12 d-flex" style="background-color: #ffffff;">
-                        <div class="container ">
-                            <!-- box cards -->
-                            <div class="row mb-5">
-                                <!-- card -->
-                                <div class="col-4" th:each="product : ${mostVoted}">
-                                    <div class="card mt-4 container2 shadow overflow-y-hidden "
-                                         style="width: 18rem; height: 18rem;">
-                                        <!-- background img card -->
-                                        <div>
-                                            <img alt="Foto Ricetta" class="img-fluid imghover border-opacity-0"
-                                                 th:src="${product.url}">
-                                        </div>
-                                        <!-- body card -->
-                                        <div class="card-img-overlay border-opacity-0 overlay d-flex flex-column align-content-between">
-                                            <div class="d-flex justify-content-end" style="width: 100%; height: 100%;">
-                                                <i class="fa-solid fa-slash text-white fs-5"></i>
-                                            </div>
-                                            <div style="width: 100%; height: 100%;">
-                                                <div class="btn btn-light rounded-pill shadow-sm">
-                                                    <a class="text-black link-offset-2 link-underline link-underline-opacity-0 px-2"
-                                                       th:href="@{/products/{id}(id=${product.id})}">Buy Now...</a>
-                                                </div>
-                                            </div>
-                                            <div class="text-start text-white" style="width: 100%; height: 100%;">
-                                                <p class="card-title fw-bold fs-5 pb-0 mb-0 "
-                                                   th:text="|${product.name} - ${product.price}€| "></p>
-                                                <p class="card-text fst-italic fs-6 mt-0 pt-0"
-                                                   th:text="${product.description}"></p>
-                                            </div>
-                                        </div>
-
-                                    </div>
+                                <div class="text-start text-white" style="width: 100%; height: 100%;">
+                                    <p class="card-title fw-bold fs-5 pb-0 mb-0 "
+                                       th:text="|${product.name} - ${product.price}€| "></p>
+                                    <p class="card-text fst-italic fs-6 mt-0 pt-0" th:text="${product.description}"></p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <h1 class="f-page">I nostri prodotti</h1>
-            <hr class="mb-0 pb-0">
-            <div class="row">
-                <div class="col-12 d-flex" style="background-color: #ffffff;">
-                    <div class="container ">
-                        <!-- box cards -->
-                        <div class="row g-0 mb-5">
-                            <!-- card -->
-                            <div class="col-3" th:each="product : ${products}">
-                                <div class="card mt-4 container2 shadow overflow-y-hidden "
-                                     style="width: 18rem; height: 18rem;">
-                                    <!-- background img card -->
-                                    <div>
-                                        <img alt="Foto Ricetta" class="img-fluid imghover border-opacity-0"
-                                             th:src="${product.url}">
-                                    </div>
-                                    <!-- body card -->
-                                    <div class="card-img-overlay border-opacity-0 overlay d-flex flex-column align-content-between">
-                                        <div class="d-flex justify-content-end" style="width: 100%; height: 100%;">
-                                            <i class="fa-solid fa-slash text-white fs-5"></i>
-                                        </div>
-                                        <div style="width: 100%; height: 100%;">
-                                            <div class="btn btn-light rounded-pill shadow-sm">
-                                                <a class="text-black link-offset-2 link-underline link-underline-opacity-0 px-2"
-                                                   th:href="@{/products/{id}(id=${product.id})}">Buy Now...</a>
-                                            </div>
-                                        </div>
-                                        <div class="text-start text-white" style="width: 100%; height: 100%;">
-                                            <p class="card-title fw-bold fs-5 pb-0 mb-0 "
-                                               th:text="|${product.name} - ${product.price}€| "></p>
-                                            <p class="card-text fst-italic fs-6 mt-0 pt-0"
-                                               th:text="${product.description}"></p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -283,22 +214,152 @@
     </div>
 </div>
 
+<!-- shop - tour - contact-->
+<div>
+    <div class="row" style="height: 50vh;">
+        <div class="col-4 bg-image"
+             style="background-image: url('https://images.pexels.com/photos/4576917/pexels-photo-4576917.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-position-y: -270px;">
+            <a th:href="@{/visita-guidata}" class="link-offset-2 link-underline link-underline-opacity-0">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="text-center text-white">
+                        <h3 class="f-page" style="font-size: 5vh">Tour</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-4 bg-image"
+             style="background-image: url('https://images.pexels.com/photos/18483756/pexels-photo-18483756/free-photo-of-scuro-vintage-shopping-negozio.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-position-y: -270px;">
+            <a th:href="@{/shop}" class="link-offset-2 link-underline link-underline-opacity-0">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="text-center text-white">
+                        <h3 class="f-page" style="font-size: 5vh">Shop</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-4 bg-image"
+             style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/8b/British_Museum_Exterior.jpg');
+            background-position-y: 0px; background-size: cover;">
+            <a th:href="@{/contact}" class="link-offset-2 link-underline link-underline-opacity-0">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="text-center text-white">
+                        <h3 class="f-page" style="font-size: 5vh">Contact</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
 
-    <script crossorigin="anonymous"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!--another -->
+<section>
+    <div class="bg-image"
+         style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/8b/British_Museum_Exterior.jpg');
+            background-size: cover; height: 50vh; background-position-y: -570px;">
+        <div class="mask h-100 " style="background-color: rgba(0, 0, 0, 0.4)">
+            <div class="container">
+                <div class="row d-flex justify-content-around align-items-center">
+                    <div class="col-5 text-white p-5 mt-5">
+                        <h4 class="py-2">Vestibu como eros volitpat convallis velit laoreet enim</h4>
+                        <p class="py-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac sollicitudin
+                            mi, in
+                            dignissim
+                            tortor.
+                            Duis tristique tellus dui, porta consectetur mauris molestie at. In at felis gravida,
+                            consequat
+                            augue
+                            sed, ullamcorper libero.
+                        </p>
+                        <div class="py-2">
+                            <button type="button" class="btn btn-outline-light">Scopri</button>
+                        </div>
 
-    <!-- footer-->
-    <section>
-        <div class="container" style="background-color: #ffffff;">
-            <div class="row">
-                <div class="col-3">
+                    </div>
+                    <div class="col pt-3 d-flex justify-content-center">
+                        <div class="board bg-dark shadow-lg overflow-y-hidden">
+                            <img src="https://www.artribune.com/wp-content/uploads/2022/09/NickCave_ThomasHouseago_BradPitt_photo_JussiKoivunen.jpg"
+                                 alt="" class="img-fluid ">
+                        </div>
+                        <!-- <form class="d-flex"
+                                action=""
+                                method="POST"
+                                object="">
 
+                              <div class="col-6 mx-2">
+                                  <input type="text" class="mx-2" placeholder="First name"
+                                         aria-label="First name">
+                              </div>
+                              <div class="col-6 mx-2">
+                                  <input type="text"
+                                         class="mx-2"
+                                         placeholder="Last name"
+                                         aria-label="Last name">
+                              </div>
+                              <div class="col-3 mx-2">
+                                  <input type="text"
+                                         class="mx-2"
+                                         placeholder="Last name"
+                                         aria-label="Last name">
+                              </div>
+                          </form> --> <!-- Form -->
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
+<!-- footer-->
+<section>
+    <div class="bg-dark">
+        <div class="row d-flex justify-content-center pt-5 pb-2">
+            <div class="col-5">
+                <div class="text-center text-white">
+                    <h5 class="fs-3">Lorem Impsum</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac sollicitudin mi, in dignissim
+                        tortor.
+                        Duis tristique tellus dui, porta consectetur mauris molestie at. In at felis gravida, consequat
+                        augue
+                        sed, ullamcorper libero. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-dark" style="height:80px;">
+        <div class="container">
+            <hr class="p-0 m-0 text-white">
+            <div class="row pt-4 pb-3">
+                <div class="col-4 text-white fs-5 d-flex justify-content-center ">
+                    <i class="fa-brands fa-instagram px-2"></i>
+                    <i class="fa-brands fa-facebook-f px-2"></i>
+                    <i class="fa-brands fa-youtube px-2"></i>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="border-end border-2 px-3 ">
+                        <a class="text-white link-underline link-underline-opacity-0" href="">Privacy</a>
+                    </div>
+                    <div class="px-3 ">
+                        <a class=" text-white link-underline link-underline-opacity-0" href="">Terms of Use</a>
+                    </div>
+                </div>
+                <div class="col-4 col-4 d-flex justify-content-center">
+                    <a class="d-flex justify-content-center" href="https://imgbb.com/">
+                        <img class="w-25" src="https://i.ibb.co/jG83DQ6/Layer-2.png" alt="Layer-2" border="0">
+                    </a>
 
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous">
+
+</script>
 </body>
 </html>
