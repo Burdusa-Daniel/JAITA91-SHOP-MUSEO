@@ -68,7 +68,7 @@
                             <i th:if="${product.averageRating > 0}"
                                th:each="i : ${#numbers.sequence(0, product.averageRating - 1)}"
                                class="fa fa-star fs-5"></i>
-                            <i th:each="i : ${#numbers.sequence(0, leftover - 1)}" class="fa fa-star-o fs-5"></i>
+                            <i th:if="${product.averageRating != 5}" th:each="i : ${#numbers.sequence(0, leftover - 1)}" class="fa fa-star-o fs-5"></i>
                         </div>
                         <h4 class="fs-5" th:text="|(${product.reviews.size()})|"></h4>
                     </div>
