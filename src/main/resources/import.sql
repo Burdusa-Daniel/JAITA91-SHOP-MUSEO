@@ -3,6 +3,8 @@ INSERT INTO products (description, name, price, url) VALUES('Time travel capable
 INSERT INTO products (description, name, price, url) VALUES('Borsa per la spesa Leonardo Da Vinci', 'Vitruviano Leonardo Da Vinci', 9.99, 'https://www.museum-shop.it/cdn/shop/products/shopping-bag-Vitruvian-Man-leonardo-da-vinci-museum-shop-italy.jpg');
 INSERT INTO products (description, name, price, url) VALUES('Smooth, comfortable and light structure.', 'Ballpoint pen', 10.89, 'https://www.museum-shop.it/cdn/shop/products/Ballpoint-pen-plastic-creation-museum-shop-italy.jpg');
 INSERT INTO products (description, name, price, url) VALUES('Set di 5 cartoline', 'Musei Vaticani', 10.89, 'https://static.museivaticani.va/images/CARTOLINE_KIT_1.png');
+INSERT INTO products (description, name, price, url) VALUES('portachiavi', 'porta chiavi museo', 5.89, 'https://images.pexels.com/photos/16163765/pexels-photo-16163765/free-photo-of-ciondolo-tigre.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+INSERT INTO products (description, name, price, url) VALUES('porta candele', 'porta candele museo', 5.89, 'https://images.pexels.com/photos/3779019/pexels-photo-3779019.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
 
 INSERT INTO macro_category (name, description) VALUES ('Cancelleria', 'La nostra cancelleria');
 INSERT INTO macro_category (name, description) VALUES ('Accessori', 'I nostri accessori');
@@ -12,6 +14,8 @@ INSERT INTO categories (description, name, macro_category_id) VALUES ('Libri', '
 INSERT INTO categories (description, name, macro_category_id) VALUES ('Borse', 'Borsa', 2);
 INSERT INTO categories (description, name, macro_category_id) VALUES ('Penne', 'Penna', 1);
 INSERT INTO categories (description, name, macro_category_id) VALUES ('Cartoline', 'Cartolina', 1);
+INSERT INTO categories (description, name, macro_category_id) VALUES ('portachiavi', 'portachiavi', 2);
+INSERT INTO categories (description, name, macro_category_id) VALUES ('porta candele', 'porta candele', 2);
 
 
 INSERT INTO products_categories (categories_id, products_id) VALUES (1,1);
@@ -19,6 +23,8 @@ INSERT INTO products_categories (categories_id, products_id) VALUES (2,2);
 INSERT INTO products_categories (categories_id, products_id) VALUES (3,3);
 INSERT INTO products_categories (categories_id, products_id) VALUES (4,4);
 INSERT INTO products_categories (categories_id, products_id) VALUES (5,5);
+INSERT INTO products_categories (categories_id, products_id) VALUES (6,6);
+INSERT INTO products_categories (categories_id, products_id) VALUES (7,7);
 
 
 INSERT INTO roles(id, name) VALUES(1, 'ADMIN');
