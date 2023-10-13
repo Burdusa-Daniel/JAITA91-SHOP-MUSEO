@@ -267,10 +267,4 @@ public class ProductController {
 
     //----------Pagine Aggiunte---------------
 
-    @GetMapping("/shop")
-    public String shop(Model model) {
-        model.addAttribute("products", productRepository.findAll());
-        return "products/shop";
-    }
-
 }
