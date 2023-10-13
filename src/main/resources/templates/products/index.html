@@ -168,44 +168,155 @@
     </div>
 </section>
 
-<!-- shop section-->
-<div class="text-center">
-    <h1 class="f-page">I nostri prodotti</h1>
-    <hr class="mb-0 pb-0">
+<div>
+    <form
+            action="/"
+            method="get">
+        <label>
+            <input class="form-control" name="q" placeholder="Cerca prodotto" type="text">
+        </label>
+
+        <button class="btn btn-primary" type="submit">Cerca</button>
+    </form>
+</div>
+
+<div class="text-center container-fluid">
     <div class="row">
-        <div class="col-3 bg-dark">
+        <div class="col-2">
+
+            <ul th:each="macroCategory : ${macroCategories}">
+                <h4 th:text="${macroCategory.name}"></h4>
+                <li th:each="category : ${macroCategory.categories}">
+                    <a th:href="@{/(category=${category.id})}" th:text="${category.name}"></a>
+                </li>
+            </ul>
         </div>
-        <div class="col-9 d-flex" style="background-color: #ffffff;">
-            <div class="container ">
-                <!-- box cards -->
-                <div class="row g-0 mb-5">
-                    <!-- card -->
-                    <div th:each="product : ${products}" class="col-3">
-                        <div class="card mt-4 container2 shadow overflow-y-hidden "
-                             style="width: 18rem; height: 18rem;">
-                            <!-- background img card -->
-                            <div>
-                                <img th:src="${product.url}" class="img-fluid imghover border-opacity-0"
-                                     alt="Foto Ricetta">
-                            </div>
-                            <!-- body card -->
-                            <div class="card-img-overlay border-opacity-0 overlay d-flex flex-column align-content-between">
-                                <div class="d-flex justify-content-end" style="width: 100%; height: 100%;">
-                                    <i class="fa-solid fa-slash text-white fs-5"></i>
-                                </div>
-                                <div style="width: 100%; height: 100%;">
-                                    <div class="btn btn-light rounded-pill shadow-sm">
-                                        <a class="text-black link-offset-2 link-underline link-underline-opacity-0 px-2"
-                                           th:href="@{/products/{id}(id=${product.id})}">Buy Now...</a>
+
+        <div class="col-10">
+            <div th:if="${topProducts != null}">
+                <h1 class="f-page">I più venduti</h1>
+                <hr class="mb-0 pb-0">
+                <div class="row">
+                    <div class="col-12 d-flex" style="background-color: #ffffff;">
+                        <div class="container ">
+                            <!-- box cards -->
+                            <div class="row mb-5">
+                                <!-- card -->
+                                <div class="col-4" th:each="product : ${topProducts}">
+                                    <div class="card mt-4 container2 shadow overflow-y-hidden "
+                                         style="width: 18rem; height: 18rem;">
+                                        <!-- background img card -->
+                                        <div>
+                                            <img alt="Foto Ricetta" class="img-fluid imghover border-opacity-0"
+                                                 th:src="${product.url}">
+                                        </div>
+                                        <!-- body card -->
+                                        <div class="card-img-overlay border-opacity-0 overlay d-flex flex-column align-content-between">
+                                            <div class="d-flex justify-content-end" style="width: 100%; height: 100%;">
+                                                <i class="fa-solid fa-slash text-white fs-5"></i>
+                                            </div>
+                                            <div style="width: 100%; height: 100%;">
+                                                <div class="btn btn-light rounded-pill shadow-sm">
+                                                    <a class="text-black link-offset-2 link-underline link-underline-opacity-0 px-2"
+                                                       th:href="@{/products/{id}(id=${product.id})}">Buy Now...</a>
+                                                </div>
+                                            </div>
+                                            <div class="text-start text-white" style="width: 100%; height: 100%;">
+                                                <p class="card-title fw-bold fs-5 pb-0 mb-0 "
+                                                   th:text="|${product.name} - ${product.price}€| "></p>
+                                                <p class="card-text fst-italic fs-6 mt-0 pt-0"
+                                                   th:text="${product.description}"></p>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-                                <div class="text-start text-white" style="width: 100%; height: 100%;">
-                                    <p class="card-title fw-bold fs-5 pb-0 mb-0 "
-                                       th:text="|${product.name} - ${product.price}€| "></p>
-                                    <p class="card-text fst-italic fs-6 mt-0 pt-0" th:text="${product.description}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div th:if="${mostVoted != null}">
+                <h1 class="f-page">I più votati</h1>
+                <hr class="mb-0 pb-0">
+                <div class="row">
+                    <div class="col-12 d-flex" style="background-color: #ffffff;">
+                        <div class="container ">
+                            <!-- box cards -->
+                            <div class="row mb-5">
+                                <!-- card -->
+                                <div class="col-4" th:each="product : ${mostVoted}">
+                                    <div class="card mt-4 container2 shadow overflow-y-hidden "
+                                         style="width: 18rem; height: 18rem;">
+                                        <!-- background img card -->
+                                        <div>
+                                            <img alt="Foto Ricetta" class="img-fluid imghover border-opacity-0"
+                                                 th:src="${product.url}">
+                                        </div>
+                                        <!-- body card -->
+                                        <div class="card-img-overlay border-opacity-0 overlay d-flex flex-column align-content-between">
+                                            <div class="d-flex justify-content-end" style="width: 100%; height: 100%;">
+                                                <i class="fa-solid fa-slash text-white fs-5"></i>
+                                            </div>
+                                            <div style="width: 100%; height: 100%;">
+                                                <div class="btn btn-light rounded-pill shadow-sm">
+                                                    <a class="text-black link-offset-2 link-underline link-underline-opacity-0 px-2"
+                                                       th:href="@{/products/{id}(id=${product.id})}">Buy Now...</a>
+                                                </div>
+                                            </div>
+                                            <div class="text-start text-white" style="width: 100%; height: 100%;">
+                                                <p class="card-title fw-bold fs-5 pb-0 mb-0 "
+                                                   th:text="|${product.name} - ${product.price}€| "></p>
+                                                <p class="card-text fst-italic fs-6 mt-0 pt-0"
+                                                   th:text="${product.description}"></p>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <h1 class="f-page">I nostri prodotti</h1>
+            <hr class="mb-0 pb-0">
+            <div class="row">
+                <div class="col-9 d-flex" style="background-color: #ffffff;">
+                    <div class="container ">
+                        <!-- box cards -->
+                        <div class="row mb-5">
+                            <!-- card -->
+                            <div th:each="product : ${products}" class="col-3">
+                                <div class="card mt-4 container2 shadow overflow-y-hidden "
+                                     style="width: 18rem; height: 18rem;">
+                                    <!-- background img card -->
+                                    <div>
+                                        <img th:src="${product.url}" class="img-fluid imghover border-opacity-0"
+                                             alt="Foto Ricetta">
+                                    </div>
+                                    <!-- body card -->
+                                    <div class="card-img-overlay border-opacity-0 overlay d-flex flex-column align-content-between">
+                                        <div class="d-flex justify-content-end" style="width: 100%; height: 100%;">
+                                            <i class="fa-solid fa-slash text-white fs-5"></i>
+                                        </div>
+                                        <div style="width: 100%; height: 100%;">
+                                            <div class="btn btn-light rounded-pill shadow-sm">
+                                                <a class="text-black link-offset-2 link-underline link-underline-opacity-0 px-2"
+                                                   th:href="@{/products/{id}(id=${product.id})}">Buy Now...</a>
+                                            </div>
+                                        </div>
+                                        <div class="text-start text-white" style="width: 100%; height: 100%;">
+                                            <p class="card-title fw-bold fs-5 pb-0 mb-0 "
+                                               th:text="|${product.name} - ${product.price}€| "></p>
+                                            <p class="card-text fst-italic fs-6 mt-0 pt-0" th:text="${product.description}"></p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -213,6 +324,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- shop - tour - contact-->
 <div>
