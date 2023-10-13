@@ -54,29 +54,26 @@
         <div class="mask h-100 " style="background-color: rgba(0, 0, 0, 0.4)">
             <div class="container h-100">
                 <div class="justify-content-center h-100">
-                    <div class="text-white pt-5 pb-0 d-flex justify-content-center align-items-center"
-                         id="navbarNav">
+                    <div class="text-white pt-5 pb-0 d-flex justify-content-center align-items-center" id="navbarNav">
                         <nav class="nav">
-                            <a class="nav-link active text-white" aria-current="page" href="#">-Home-</a>
-                            <a class="nav-link text-white" href="#">-Chi Siamo-</a>
-                            <a class="nav-link text-white" href="#">-Blog-</a>
-                            <a class="nav-link text-white" href="#">-Contact-</a>
+                            <a class="nav-link active text-white" aria-current="page" th:href="@{/}">-Home-</a>
+                            <a class="nav-link text-white" th:href="@{/shop}">-Shop-</a>
+                            <a class="nav-link text-white" th:href="@{/visita-guidata}">-Tour-</a>
+                            <a class="nav-link text-white" th:href="@{/contact}">-Contact-</a>
                         </nav>
                     </div>
                     <div class="d-flex justify-content-center align-items-center h-50 mt-3">
 
                         <div class="text-white lh-1 text-center">
-                            <p class="mb-0" style="font-size:30px; font-weight: 300;">-Welcome to the Best
-                                Museum-</p>
-                            <h1 class="mt-0" style="font-size:80px; font-weight: 500">Prenota la tua visita al
-                                museo</h1>
+                            <p class="mb-0" style="font-size:30px; font-weight: 300;">-Welcome to the Best Museum-</p>
+                            <h1 class="mt-0" style="font-size:80px; font-weight: 500">Prenota la tua visita al museo</h1>
                             <p>National Museum</p>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
                         <button type="button" class="btn btn-outline-light">
                             <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                               th:href="@{/}">Torna al catalogo</a>
+                               th:href="@{/}">Torna al Home</a>
                         </button>
                     </div>
                 </div>
@@ -88,12 +85,10 @@
 </section>
 <!-- shop section-->
 <div class="text-center">
-    <h1 class="f-page">Le nostre visite</h1>
-    <hr class="mb-0 pb-0">
-    <div class="row">
+    <div class="row mx-0">
         <div class="col-3 bg-dark">
         </div>
-        <div class="col-9 d-flex" style="background-color: #ffffff;">
+        <div class="col-9 d-flex mx-0" style="background-color: #ffffff;">
             <div class="container ">
                 <!-- box cards -->
                 <div class="row g-0 mb-5">

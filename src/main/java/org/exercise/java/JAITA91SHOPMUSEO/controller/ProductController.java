@@ -68,14 +68,14 @@ public class ProductController {
     ) {
         if (query != null) {
             model.addAttribute("products",
-                               productRepository.findAllByNameContaining(query)
+                    productRepository.findAllByNameContaining(query)
             );
         } else {
             if (categoryId != null) {
                 model.addAttribute(
                         "products",
                         categoryService.getById(categoryId)
-                                       .getProducts()
+                                .getProducts()
                 );
             } else {
                 model.addAttribute("products", productRepository.findAll());
@@ -272,12 +272,5 @@ public class ProductController {
         model.addAttribute("products", productRepository.findAll());
         return "products/shop";
     }
-
-    @GetMapping("/contact")
-    public String contact(Model model) {
-        model.addAttribute("products", productRepository.findAll());
-        return "products/shop";
-    }
-
 
 }
