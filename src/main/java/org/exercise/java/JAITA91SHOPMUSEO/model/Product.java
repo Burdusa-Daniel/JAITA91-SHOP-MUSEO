@@ -26,7 +26,7 @@ public class Product {
     private BigDecimal price;
 
     @ManyToMany
-    List<Category> categories;
+    private List<Category> categories;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<Order> orders;

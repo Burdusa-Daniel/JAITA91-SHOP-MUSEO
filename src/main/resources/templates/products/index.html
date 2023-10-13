@@ -168,21 +168,24 @@
     </div>
 </section>
 
-<div>
-    <form
-            action="/"
-            method="get">
-        <label>
-            <input class="form-control" name="q" placeholder="Cerca prodotto" type="text">
-        </label>
 
-        <button class="btn btn-primary" type="submit">Cerca</button>
-    </form>
-</div>
 
 <div class="text-center container-fluid">
+
     <div class="row">
-        <div class="col-2">
+        <div class="col-2 bg-dark">
+
+            <div>
+                <form
+                        action="/"
+                        method="get">
+                    <label>
+                        <input class="form-control" name="q" placeholder="Cerca prodotto" type="text">
+                    </label>
+
+                    <button class="btn btn-primary" type="submit">Cerca</button>
+                </form>
+            </div>
 
             <ul th:each="macroCategory : ${macroCategories}">
                 <h4 th:text="${macroCategory.name}"></h4>
@@ -284,7 +287,7 @@
             <h1 class="f-page">I nostri prodotti</h1>
             <hr class="mb-0 pb-0">
             <div class="row">
-                <div class="col-9 d-flex" style="background-color: #ffffff;">
+                <div class="col-12 d-flex" style="background-color: #ffffff;">
                     <div class="container ">
                         <!-- box cards -->
                         <div class="row mb-5">
