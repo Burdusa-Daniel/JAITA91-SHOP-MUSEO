@@ -1,7 +1,9 @@
 package org.exercise.java.JAITA91SHOPMUSEO.controller;
 
 import jakarta.validation.Valid;
+import org.exercise.java.JAITA91SHOPMUSEO.model.Prenotation;
 import org.exercise.java.JAITA91SHOPMUSEO.model.TuristVisit;
+import org.exercise.java.JAITA91SHOPMUSEO.repository.PrenotationRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.repository.TuristVisitRepository;
 import org.exercise.java.JAITA91SHOPMUSEO.service.TuristVisitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,15 @@ import org.springframework.web.bind.annotation.*;
 public class TuristVisitController {
 
     private final TuristVisitService turistVisitService;
+    private final PrenotationRepository prenotationRepository;
     @Autowired
     private TuristVisitRepository turistVisitRepository;
 
-    public TuristVisitController(TuristVisitService turistVisitService) {
+    public TuristVisitController(TuristVisitService turistVisitService,
+                                 PrenotationRepository prenotationRepository
+    ) {
         this.turistVisitService = turistVisitService;
+        this.prenotationRepository = prenotationRepository;
     }
 
     @GetMapping
@@ -84,5 +90,15 @@ public class TuristVisitController {
         return "redirect:/visita-guidata/admin/list";
     }
 
+    @PostMapping("/book/{id}")
+    public String book(@PathVariable Integer id, Model model) {
+        Prenotation prenotation = new Prenotation();
+        prenotation.setVisit(turistVisitService.getById(id));
+        prenotationRepository.save(new Prenotation());
+
+        model.addAttribute("turistVisit", turistVisitService.getById(id));
+
+        return "/visit/purchased";
+    }
 
 }

@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Table(name = "turistvisit")
+@Table(name = "turist_visit")
 public class TuristVisit {
 
     //ATTRIBUTI
@@ -24,6 +25,17 @@ public class TuristVisit {
     private BigDecimal price;
 
     private String url;
+
+    @OneToMany(mappedBy = "visit")
+    private List<Prenotation> prenotations;
+
+    public List<Prenotation> getPrenotations() {
+        return prenotations;
+    }
+
+    public void setPrenotations(List<Prenotation> prenotations) {
+        this.prenotations = prenotations;
+    }
 
     //GETTER E SETTER
 
