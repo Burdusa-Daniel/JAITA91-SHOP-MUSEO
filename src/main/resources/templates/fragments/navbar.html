@@ -26,7 +26,7 @@
                         <li class="nav-item">
                             <a
                                     class="nav-link"
-                                    th:classappend="${#strings.equals(area,'catalog') ? 'active' : ''}"
+                                    th:classappend="${#strings.equals(area,'user-visits') ? 'active' : ''}"
                                     th:href="@{/visita-guidata}"
                             >Visite</a>
                         </li>
@@ -50,7 +50,7 @@
                         <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
                             <a
                                     class="nav-link"
-                                    th:classappend="${#strings.equals(area,'categories') ? 'active' : ''}"
+                                    th:classappend="${#strings.equals(area,'visits') ? 'active' : ''}"
                                     th:href="@{/visita-guidata/admin/list}"
                             >Gestione visite</a>
                         </li>

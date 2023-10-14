@@ -8,7 +8,7 @@
     <title>Create</title>
 </head>
 <body>
-<nav th:replace="fragments/navbar :: navbar(area='catalog')"></nav>
+<nav th:replace="fragments/navbar :: navbar(area='visits')"></nav>
 <div class="container text-center">
     <h1 class="mb-4">Crea un Nuovo Prodotto</h1>
 
@@ -43,7 +43,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Crea</button>
-        <a class="btn btn-secondary" th:href="@{visita-guidata/admin/list}">Indietro</a>
+        <a class="btn btn-secondary" th:href="@{/visita-guidata/admin/list}">Indietro</a>
     </form>
 </div>
 

@@ -8,7 +8,7 @@
     <title>edit</title>
 </head>
 <body>
-<nav th:replace="fragments/navbar :: navbar(area='catalog')"></nav>
+<nav th:replace="fragments/navbar :: navbar(area='visits')"></nav>
 <div class="container text-center">
     <h1 class="mb-4">Modifica il Prodotto</h1>
     <form th:action="@{/visita-guidata/admin/edit/{id}(id=${turistvisit.id})}"

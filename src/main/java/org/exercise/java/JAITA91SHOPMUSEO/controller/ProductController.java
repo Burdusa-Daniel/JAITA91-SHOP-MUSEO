@@ -263,7 +263,7 @@ public class ProductController {
     ) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("categories", categoryRepository.findAll());
-            return "admin/edit";
+            return "admin/products/edit";
         }
         productRepository.save(productForm);
         return "redirect:/admin";
