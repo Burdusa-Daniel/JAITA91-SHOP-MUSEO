@@ -9,7 +9,6 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
-            padding: 20px;
         }
 
         .container {
@@ -68,7 +67,7 @@
 <nav th:replace="fragments/navbar :: navbar(area='storage')"></nav>
 <div class="container">
 
-    <h1>Form di Rifornimento</h1>
+    <h1>Rifornisci prodotto</h1>
     <form
             method="POST"
             th:object="${assortment}"

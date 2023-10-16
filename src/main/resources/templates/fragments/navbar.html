@@ -61,7 +61,7 @@
             <div class="">
                 <div class="w-100 d-flex align-items-center justify-content-end"
                      sec:authorize="isAuthenticated()">
-                    <h1 sec:authentication="name"></h1>
+                    <h1 class="text-warning" sec:authentication="name"></h1>
                     <div class="vr mx-3"></div>
                     <a class="btn btn-warning" th:href="@{/logout}">Logout</a>
                 </div>
