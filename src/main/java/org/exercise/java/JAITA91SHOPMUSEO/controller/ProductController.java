@@ -85,6 +85,13 @@ public class ProductController {
         return "admin/products/restock-history";
     }
 
+    @GetMapping("/admin/orders")
+    public String orders(Model model) {
+        model.addAttribute("orders", orderRepository.findAll());
+
+        return "admin/products/order-history";
+    }
+
     @GetMapping("/shop")
     public String shop(
             Model model,
