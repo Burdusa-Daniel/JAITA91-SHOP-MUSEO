@@ -78,6 +78,13 @@ public class ProductController {
         return "products/index";
     }
 
+    @GetMapping("/admin/restocks")
+    public String restocks(Model model) {
+        model.addAttribute("assortments", assortmentRepository.findAll());
+
+        return "admin/products/restock-history";
+    }
+
     @GetMapping("/shop")
     public String shop(
             Model model,
